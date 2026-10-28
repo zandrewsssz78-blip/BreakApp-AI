@@ -1,0 +1,46 @@
+[project]
+name = "break-ia"
+version = "0.1.0"
+description = "Agente racional para la recomendacion contextual y optimizacion predictiva de pedidos en cafeterias universitarias (BreakApp). Asignatura de Inteligencia Artificial."
+readme = "README.md"
+license = "GPL-3.0-or-later AND CC-BY-4.0"
+authors = [
+    { name = "BreakApp AI Team", email = "andres.rubianoc@utadeo.edu.co" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "marimo>=0.17.6",
+    "polars>=1.36.1",
+    "ruff>=0.16.4",
+]
+
+[project.scripts]
+break-ia = "break_ia.agent:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "__marimo__",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "SIM",
+    "N",
+]

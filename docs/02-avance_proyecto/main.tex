@@ -1,0 +1,409 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[backend=biber,style=ieee,sorting=ynt]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{ragged2e}
+
+\addbibresource{referencias.bib}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\newcolumntype{L}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\hypersetup{
+    pdftitle={Avance De Proyecto II: Formulación Del Problema Como Agente Inteligente},
+    pdfauthor={Andrés Rubiano},
+    pdfsubject={Avance proyecto Inteligencia Artificial},
+    pdfkeywords={BreakApp, Agente Inteligente, PEAS, Sistema de Recomendación, IA},
+    pdfcreator={LaTeX con hyperref},
+    pdfproducer={pdflatex}
+}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=7.0in,
+    top=0.5in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize \thepage \quad \textbar{} \quad Este trabajo está bajo una licencia CC BY-SA 4.0.\\ Más info: \url{https://creativecommons.org/licenses/by/4.0/}}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+	\\ [2.0cm]
+	\HRule{1.5pt} \\
+	\LARGE \textbf{\uppercase{FORMULACIÓN DEL PROBLEMA COMO AGENTE INTELIGENTE}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Universidad de Bogotá Jorge Tadeo Lozano} \vspace*{11\baselineskip}}
+}
+\date{}
+\author{\textbf{Andrés Rubiano} \\
+	 Inteligencia Artificial - 2026-2S}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\listoftables
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\section{Descripción y Justificación del Problema}
+
+En los campus universitarios, la dinámica diaria de estudiantes, profesores y personal administrativo está fuertemente estructurada por franjas académicas rígidas. Entre clases existen recesos cortos (\textit{breaks}) de entre 15 y 30 minutos, durante los cuales cientos de personas acuden simultáneamente a las cafeterías y puntos de comida del campus (tales como \textit{Catering Gourmet}, \textit{Punto Verde} y \textit{Central Food})~\cite{ricci2022recommender}.
+
+Esta concentración espacio-temporal genera un cuello de botella crítico caracterizado por:
+\begin{enumerate}
+    \item \textbf{Filas extensas y tiempos de indecisión:} Los usuarios dedican entre 8 y 12 minutos únicamente a revisar menús estáticos, evaluar opciones y esperar en la fila de pedidos, consumiendo más del 50\% de su tiempo libre disponible.
+    \item \textbf{Asimetría de demanda en cocinas:} Ciertos platos o combos sufren sobreocupación y retrasos de preparación mientras productos alternativos de alta calidad permanecen con baja rotación.
+    \item \textbf{Falta de personalización y frustración por restricciones dietéticas:} Los usuarios tienen preferencias nutricionales heterogéneas (dietas vegetarianas, intolerancia a la lactosa, alergias o aversión a condimentos específicos como la cebolla) y presupuestos semanales diferenciados (desde snacks económicos de \$4.500 COP hasta almuerzos ejecutivos de \$25.000 COP)~\cite{adomavicius2011context}. Un menú genérico obliga a búsquedas repetitivas y propicia errores en la orden.
+\end{enumerate}
+
+Actualmente se dispone de la aplicación móvil \textbf{BreakApp}, desarrollada para la gestión y tramitación digital de pedidos dentro del campus. Sin embargo, en su estado actual, la aplicación actúa como un catálogo pasivo de consulta y carrito de compras, sin capacidad para anticipar qué desea consumir un estudiante a las 08:20 AM frente a lo que requiere a las 12:45 PM o en una tarde de estudio a las 04:30 PM~\cite{burke2002hybrid}. 
+
+Por lo tanto, la solución radica en diseñar y desplegar un \textbf{Agente Inteligente Racional} acoplado conceptualmente a BreakApp, que evalúe activamente el contexto del usuario (historial, hora del día, día de la semana, restricciones dietéticas y presupuesto) y el catálogo de alimentos para sugerir proactivamente productos individuales y combinaciones complementarias (combos/maridajes) de máxima utilidad~\cite{russell2020artificial}.
+
+\section{Definición Del Agente Inteligente}
+
+Se define formalmente al agente como el \textbf{Recomendador Contextual y Predictivo de Pedidos (Break-Recommender Agent)}.
+
+\begin{itemize}
+    \item \textbf{Entidad Operativa:} El agente es el software decisor independiente de la interfaz gráfica móvil. Su responsabilidad es percibir el estado contextual del usuario y del catálogo de las cafeterías, evaluar matemáticamente el espacio de productos candidatos y determinar el ordenamiento óptimo de recomendaciones y combos para el instante de consulta.
+    \item \textbf{Decisión que toma:} El agente decide el \textbf{Vector de Recomendación Ordenado} $R_u(t)$ de longitud $K$ (típicamente $K=3$ o $K=5$), así como la asignación de un producto complementario o combo óptimo $\mathrm{Pairing}(p^*)$:
+    \[
+        R_u(t) = \left[ p_{(1)}, p_{(2)}, \dots, p_{(K)} \right] \in \mathcal{P}^K, \quad p_{(i)} \neq p_{(j)} \quad \forall i \neq j
+    \]
+    sujeto al cumplimiento estricto de las restricciones dietéticas y de salud del usuario $\mathcal{C}_{\mathrm{diet}}(u)$, la disponibilidad física del producto $\mathrm{available}(p) = \mathrm{True}$, y la coherencia presupuestaria con el perfil de gasto habitual $[B_{\min}(u), B_{\max}(u)]$:
+    \[
+        \mathrm{Price}(p_{(i)}) \leq B_{\max}(u) \cdot (1 + \epsilon)
+    \]
+    donde $\epsilon$ es un factor de tolerancia presupuestal (ej. 15\%).
+\end{itemize}
+
+\section{Modelo PEAS/REAS}
+
+\begin{longtable}{|>{\bfseries}p{0.18\textwidth} |p{0.76\textwidth}|}
+    \caption{Especificación PEAS del agente inteligente Break-Recommender}
+    \label{tab:peas-breakapp} \\
+
+    \toprule
+    \textbf{Dimensión PEAS} & \textbf{Descripción específica del proyecto BreakApp-AI} \\
+    \midrule
+    \endfirsthead
+
+    \endhead
+
+    \midrule
+    \multicolumn{2}{r}{{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    \textbf{Rendimiento (Performance)}
+    &
+    Función de utilidad multicriterio $U(u, p, t)$ que maximiza la satisfacción del usuario y la eficiencia de la recomendación:
+    \[
+        U(u, p, t) = w_1 S_{\mathrm{content}}(u, p) + w_2 S_{\mathrm{temporal}}(t, p) + w_3 S_{\mathrm{budget}}(u, p) + w_4 S_{\mathrm{pairing}}(p) - \lambda \cdot P_{\mathrm{alergia}}(u, p)
+    \]
+    donde $S_{\mathrm{content}}$ es la afinidad basada en categorías y etiquetas (\textit{tags}), $S_{\mathrm{temporal}}$ es la probabilidad condicional de consumo en la franja horaria $t$ (desayuno/mañana, almuerzo, tarde), $S_{\mathrm{budget}}$ es la proximidad al gasto promedio del usuario, $S_{\mathrm{pairing}}$ es la coherencia de maridaje con categorías complementarias (ej. Almuerzo + Bebida, o Café + Croissant), y $P_{\mathrm{alergia}}$ es una penalización infinita ($\lambda \gg 0$) ante cualquier coincidencia con notas de rechazo médico o dietario (ej. lactosa en usuarios intolerantes, cebolla o alimentos no vegetarianos). Los pesos típicos son $w_1 = 0.35$, $w_2 = 0.30$, $w_3 = 0.20$ y $w_4 = 0.15$.
+    \\ \hline
+
+    Entorno (Environment)
+    &
+    Campus universitario con 3 puntos de alimentación oficiales (\textit{Catering Gourmet}, \textit{Punto Verde}, \textit{Central Food}), catálogo activo de 23 productos divididos en 4 categorías canónicas (\texttt{ALMUERZOS}, \texttt{SNACKS}, \texttt{BEBIDAS}, \texttt{POSTRES}), horarios de operación de 07:00 AM a 08:00 PM, y una comunidad universitaria modelada mediante perfiles y arquetipos representativos (Estudiante Mañanero, Almuerzo Ejecutivo, Estudiante Fitness/Vegetariano, Estudiante Vespertino/Código y Docente Gourmet).
+    \\ \hline
+
+    Actuadores (Actuators)
+    &
+    Módulo de respuesta estructurada en formato JSON consumible por la API móvil de BreakApp:
+    \begin{itemize}
+        \item Vector ordenado de productos recomendados (Top-$K$ items).
+        \item Identificador de combo sugerido con producto complementario (\texttt{pairing\_id}).
+        \item Mensaje generativo contextual para banner o notificación \textit{Push} (ej. \textit{"¿Listo para tu café matutino? Prueba hoy nuestro Mocaccino con Croissant en Catering Gourmet"}).
+    \end{itemize}
+    \\ \hline
+
+    Sensores (Sensors)
+    &
+    Ingesta de flujos de datos estructurados:
+    \begin{itemize}
+        \item Historial de transacciones previas (\texttt{order\_history.csv}): \texttt{user\_id}, \texttt{timestamp}, \texttt{category}, \texttt{quantity}, \texttt{price\_cop}, \texttt{notes}, \texttt{rating}.
+        \item Catálogo de productos enriquecido (\texttt{products\_catalog.csv}): \texttt{id}, \texttt{price}, \texttt{prepTime}, \texttt{calories}, \texttt{tags}, \texttt{complementary\_category}, \texttt{pairing\_ids}.
+        \item Variables de contexto en tiempo de ejecución: reloj del sistema (hora, día de la semana) e identificador de sesión del usuario.
+    \end{itemize}
+    \\
+
+\end{longtable}
+
+\section{Caracterización del Entorno}
+
+De acuerdo con la taxonomía formal de Russell y Norvig~\cite{russell2020artificial}, el entorno de operación del agente se caracteriza como:
+
+\begin{itemize}
+    \item \textbf{Parcialmente Observable:} El agente percibe las transacciones completadas, calificaciones pasadas y notas escritas por el cliente, pero no tiene acceso directo al nivel instantáneo de hambre, apetito repentino, estado anímico o capacidad monetaria en tiempo real del usuario.
+    \item \textbf{Estocástico:} La decisión final de compra de un usuario no es perfectamente predecible; existe variabilidad humana probabilística ante estímulos visuales, recomendaciones y disponibilidad de productos.
+    \item \textbf{Dinámico:} El inventario disponible, los tiempos de espera en cocina y el tiempo transcurrido del receso varían mientras el agente calcula su sugerencia.
+    \item \textbf{Secuencial:} Una compra efectuada a las 08:15 AM (ej. Capuchino y Croissant) condiciona directamente la necesidad calórica y la categoría de compra recomendada al mediodía (12:30 PM), evitando recomendar productos redundantes o incompatibles.
+    \item \textbf{Discreto / Continuo:} Las variables temporales (hora del día, tiempos de preparación) fluyen continuamente, mientras que las entidades de decisión (productos del menú, categorías, cantidades) son discretas.
+    \item \textbf{Individual / Centralizado:} Existe un agente recomendador centralizado que personaliza inferencias para múltiples usuarios de manera desacoplada.
+\end{itemize}
+
+\section{Ciclo Percepción –- Decisión –- Acción}
+
+El ciclo deliberativo del agente inteligente se estructura en 5 pasos secuenciales:
+
+\begin{enumerate}
+    \item \textbf{Paso 1 (Percibir):} El agente recibe el identificador del usuario (\texttt{user\_id}), el instante de tiempo actual ($t = (\mathrm{hora}, \mathrm{día})$) y consulta el estado del catálogo de productos disponibles en las cafeterías.
+    \item \textbf{Paso 2 (Filtrar Restricciones Duras):} Aplica un filtro determinista para descartar de inmediato cualquier producto que viole restricciones médicas o dietéticas detectadas en el histórico de notas (alergia a la cebolla, intolerancia a lácteos, restricción vegetariana) o que exceda el umbral presupuestal máximo.
+    \item \textbf{Paso 3 (Evaluar Utilidad):} Computa la función de utilidad multicriterio $U(u, p, t)$ para todos los productos candidatos elegibles, ponderando la afinidad de etiquetas (\textit{tags}), la congruencia temporal y el historial de compras.
+    \item \textbf{Paso 4 (Decidir Ordenamiento y Maridaje):} Selecciona el Top-$K$ de mayor utilidad y vincula los productos complementarios mediante el grafo de \texttt{pairing\_ids} (ej. asociar un almuerzo con una bebida natural o un café con un snack horneado).
+    \item \textbf{Paso 5 (Actuar):} Serializa y emite el payload estructurado con el banner contextual y la lista ordenada de productos para que la interfaz de BreakApp la presente en pantalla al usuario.
+\end{enumerate}
+
+\section{Datos Requeridos y Viabilidad Arquitectónica}
+
+\subsection{Inventario y Acceso a Fuentes de Datos}
+
+El desarrollo y calibración del agente inteligente se fundamenta en un conjunto de datos sintético rigurosamente modelado a partir del dominio real de la aplicación BreakApp:
+
+\begin{longtable}{|>{\bfseries}p{0.20\textwidth} |p{0.22\textwidth} |p{0.18\textwidth} |p{0.32\textwidth}|}
+    \caption{Conjunto de datos estructurados para el entrenamiento y evaluación de BreakApp-AI}
+    \label{tab:datasets-breakapp} \\
+
+    \toprule
+    \textbf{Conjunto de Datos}
+    & \textbf{Fuente y Módulo}
+    & \textbf{Tipo de Formato}
+    & \textbf{Volumen y Variables Clave} \\
+    \midrule
+    \endfirsthead
+
+    \multicolumn{4}{c}%
+    {{\tablename\ \thetable{} -- continuación}} \\
+    \toprule
+    \textbf{Conjunto de Datos}
+    & \textbf{Fuente y Módulo}
+    & \textbf{Tipo de Formato}
+    & \textbf{Volumen y Variables Clave} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{4}{r}{{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    \textbf{Historial de Pedidos (\texttt{order\_history})}
+    &
+    Base de datos de pedidos de BreakApp (simulación de 5 semanas de recesos)
+    &
+    CSV / Parquet / JSON
+    &
+    168 registros transaccionales. Variables: \texttt{user\_id}, \texttt{order\_id}, \texttt{timestamp}, \texttt{day\_of\_week}, \texttt{restaurant\_id}, \texttt{product\_id}, \texttt{category}, \texttt{quantity}, \texttt{price\_cop}, \texttt{notes}, \texttt{rating}.
+    \\ \hline
+
+    \textbf{Catálogo de Productos (\texttt{products\_catalog})}
+    &
+    Repositorio de menús de cafeterías de campus (\textit{Catering Gourmet}, \textit{Punto Verde}, \textit{Central Food})
+    &
+    CSV / Parquet / JSON
+    &
+    23 productos activos. Variables: \texttt{id}, \texttt{name}, \texttt{description}, \texttt{price}, \texttt{prepTime}, \texttt{category}, \texttt{restaurantId}, \texttt{available}, \texttt{calories}, \texttt{tags}, \texttt{complementary\_category}, \texttt{pairing\_ids}.
+    \\ \hline
+
+    \textbf{Perfiles de Usuario (Arquetipos Sintéticos)}
+    &
+    Modelo demográfico universitario
+    &
+    JSON estructurado
+    &
+    5 arquetipos: Estudiante Mañanero, Almuerzo Ejecutivo, Estudiante Fitness, Estudiante Vespertino de Código, y Docente Gourmet.
+    \\ \hline
+
+\end{longtable}
+
+\section{Hipótesis Preliminar De Solución Con IA}
+
+\subsection{Hipótesis Formal de Trabajo}
+
+Se plantea la hipótesis de que mediante un \textbf{Sistema de Recomendación Basado en Utilidad y Filtrado Híbrido Contextual} (que combine modelos basados en contenido con ponderación temporal y reglas de satisfacción de restricciones duras), el agente será capaz de anticipar con una precisión superior al 85\% la categoría y rango de gasto de la orden del usuario en cada receso, logrando reducir el tiempo de búsqueda y selección en la aplicación móvil en al menos un 35\% frente a una navegación de catálogo convencional.
+
+\subsection{Justificación Teórica y Arquitectónica del Enfoque}
+
+A diferencia de plataformas masivas de comercio electrónico con millones de interacciones, un entorno de cafetería universitaria presenta las siguientes particularidades:
+\begin{enumerate}
+    \item \textbf{Catálogo acotado y rotación controlada:} 23 platos principales y complementos distribuidos en 3 restaurantes.
+    \item \textbf{Alta sensibilidad temporal:} La probabilidad de comprar un almuerzo ejecutivo a las 08:15 AM es prácticamente nula, mientras que un Capuchino o Croissant a esa misma hora tiene probabilidad máxima~\cite{adomavicius2011context}.
+    \item \textbf{Cero tolerancia a errores en restricciones dietéticas:} Si un usuario registra en sus notas \textit{"Leche deslactosada"} o \textit{"Sin cebolla"}, recomendarle un plato que contenga lácteos enteros o cebolla destruye la confianza y utilidad del sistema.
+\end{enumerate}
+
+Por estas razones, un enfoque puramente colaborativo basado en factorización matricial sufriría el problema de arranque en frío (\textit{cold-start}) ante nuevos productos y no garantizaría el cumplimiento de restricciones críticas. En su lugar, se diseña una arquitectura híbrida de \textbf{Filtrado Basado en Contenido con Grafos de Maridaje y Optimización de Utilidad Multicriterio}~\cite{lops2011content,burke2002hybrid}, permitiendo inferencia instantánea y explicabilidad directa de las recomendaciones.
+
+\section{Métricas de Éxito}
+
+\begin{longtable}{|>{\bfseries}p{0.20\textwidth} |p{0.19\textwidth} |p{0.33\textwidth} |p{0.24\textwidth}|}
+    \caption{Métricas y criterios de evaluación de BreakApp-AI}
+    \label{tab:metricas-breakapp} \\
+
+    \toprule
+    \textbf{Nivel de Evaluación}
+    & \textbf{Métrica Específica}
+    & \textbf{Definición y Justificación}
+    & \textbf{Meta Cuantitativa de Éxito} \\
+    \midrule
+    \endfirsthead
+
+    \multicolumn{4}{c}%
+    {{\tablename\ \thetable{} -- continuación}} \\
+    \toprule
+    \textbf{Nivel de Evaluación}
+    & \textbf{Métrica Específica}
+    & \textbf{Definición y Justificación}
+    & \textbf{Meta Cuantitativa de Éxito} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{4}{r}{{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    \multirow{4}{=}{\textbf{Métricas del Problema Real}\\
+    \textbf{(Impacto en la App y Campus)}}
+    &
+    Tasa de Aceptación (CTR/Conversion)
+    &
+    Porcentaje de recomendaciones sugeridas en pantalla que son agregadas al carrito y compradas.
+    &
+    Incremento $\geq 25\%$ frente al menú convencional sin IA.
+    \\ \cline{2-4}
+
+    &
+    Tiempo de Selección de Pedido
+    &
+    Segundos transcurridos desde que el usuario abre BreakApp hasta que confirma el carrito de compras.
+    &
+    Reducción $\geq 35\%$ (ahorro de más de 3 minutos por usuario).
+    \\ \cline{2-4}
+
+    &
+    Cumplimiento de Restricciones Dietéticas
+    &
+    Porcentaje de recomendaciones libres de alérgenos o ingredientes expresamente rechazados por el usuario.
+    &
+    $100\%$ de cumplimiento estricto ($\lambda$ de penalización estricta).
+    \\ \cline{2-4}
+
+    &
+    Tasa de Adopción de Combos (Cross-selling)
+    &
+    Frecuencia con la cual se aceptan sugerencias de maridaje complementario (\texttt{pairing\_ids}).
+    &
+    Adopción $\geq 20\%$ de combos complementarios sugeridos.
+    \\ \hline
+
+    \multirow{3}{=}{\textbf{Métricas del Modelo de IA}\\
+    \textbf{(Desempeño Algorítmico)}}
+    &
+    Precision@K ($K=3$)
+    &
+    Fracción de los primeros $K$ productos sugeridos que coinciden con los hábitos reales del perfil.
+    &
+    $\mathrm{Precision@3} \geq 0.80$.
+    \\ \cline{2-4}
+
+    &
+    Ganancia Neta de Utilidad ($\Delta U$)
+    &
+    Diferencia en la puntuación de la función de utilidad entre el Top-$K$ del agente y una política de popularidad base.
+    &
+    $\Delta U > 0$ con significancia estadística.
+    \\ \cline{2-4}
+
+    &
+    Latencia de Inferencia por Consulta
+    &
+    Tiempo de procesamiento del ciclo de decisión del agente para emitir el payload de recomendación.
+    &
+    $< 50$ milisegundos en entorno local/servidor.
+    \\
+
+\end{longtable}
+
+\section{Supuestos y Limitaciones Técnicas}
+
+\textbf{Supuestos Asumidos:}
+\begin{enumerate}
+    \item Los usuarios conservan hábitos de consumo consistentes en días fijos de la semana (ej. consumo matutino constante los lunes, miércoles y viernes; almuerzos más indulgentes los viernes).
+    \item Las notas de pedido (\texttt{notes}) reflejan preferencias dietéticas estables y no fluctuaciones transitorias.
+    \item El catálogo de productos y precios publicado por las cafeterías permanece estable durante el período de simulación.
+\end{enumerate}
+
+\textbf{Limitaciones Técnicas:}
+\begin{enumerate}
+    \item La validación inicial se efectúa sobre un dataset sintético estructurado de 168 pedidos y 23 productos antes del despliegue masivo en el campus real.
+    \item El agente no dispone de telemetría biométrica del usuario (como frecuencia cardíaca o gasto calórico instantáneo); su contexto se restringe a variables temporales, presupuestales y transaccionales.
+    \item El módulo de IA opera como un servicio backend desacoplado que expone endpoints JSON, manteniendo la integridad del código fuente móvil existente en Android Studio.
+\end{enumerate}
+
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography
+
+\newpage
+\thispagestyle{empty}
+\vspace*{0.3\textwidth}
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=\textwidth]{img/LogoUtadeo.svg}
+\end{figure}
+
+\end{document}

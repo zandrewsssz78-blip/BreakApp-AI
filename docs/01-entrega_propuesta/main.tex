@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[backend=biber,style=ieee,sorting=ynt]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+
+\addbibresource{referencias.bib}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\hypersetup{
+    pdftitle={Propuesta de Proyecto: Agente Inteligente para BreakApp},
+    pdfauthor={Equipo BreakApp},
+    pdfsubject={Propuesta de Proyecto de Inteligencia Artificial},
+    pdfkeywords={Inteligencia Artificial, Sistema de Recomendación, Agente Racional, PEAS, BreakApp},
+    pdfcreator={LaTeX with hyperref},
+    pdfproducer={pdflatex}
+}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize \thepage \quad \textbar{} \quad Este trabajo está bajo una licencia CC BY-SA 4.0.\\ Más info: \url{https://creativecommons.org/licenses/by/4.0/}}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+	\\ [2.0cm]
+	\HRule{1.5pt} \\
+	\LARGE \textbf{\uppercase{BreakApp-AI}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Agente racional para la recomendación contextual y optimización predictiva de pedidos en cafeterías universitarias} \vspace*{10\baselineskip}}
+}
+\date{}
+\author{\textbf{Andrés Rubiano} \\
+	 Inteligencia Artificial - 2026-2S \\
+	 Universidad de Bogotá Jorge Tadeo Lozano}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\section{Descripción del problema}
+
+En el contexto de la vida universitaria contemporánea, los estudiantes, docentes y personal administrativo disponen de recesos breves (\textit{breaks}) de entre 15 y 30 minutos entre jornadas de clase para descansar, alimentarse e interactuar socialmente. Sin embargo, la experiencia de adquisición de alimentos y bebidas dentro de los puntos de venta del campus (tales como \textit{Catering Gourmet}, \textit{Punto Verde} y \textit{Central Food}) se ve sistemáticamente degradada por una severa fricción operativa y cognitiva~\cite{ricci2022recommender}. 
+
+Por un lado, los usuarios se enfrentan a menús estáticos, dispersos y con alta sobrecarga de información, lo que genera indecisión en el momento de la compra y pérdida de tiempo valioso en filas físicas o pantallas de selección. Asimismo, las preferencias individuales varían sustancialmente según factores multidimensionales: horarios de consumo (café y snacks matutinos entre las 8:00 AM y 8:30 AM vs. almuerzos balanceados entre las 12:30 PM y 1:30 PM), presupuestos semanales heterogéneos, hábitos nutricionales específicos (arquetipos fitness, veganos o estudiantes vespertinos) y restricciones dietéticas no negociables (intolerancia a la lactosa, exclusión de ingredientes específicos como cebolla o dietas bajas en azúcar)~\cite{adomavicius2011context}. 
+
+Por otro lado, los restaurantes del campus operan con picos de demanda altamente concentrados y asimétricos, provocando congestión en cocina, agotamiento imprevisto de platos populares y mermas en productos perecederos. A pesar de contar con la plataforma móvil \textbf{BreakApp} para la visualización del menú y el trámite de compras, la aplicación opera bajo una presentación pasiva y determinista de productos, careciendo de un mecanismo automatizado e inteligente que anticipe las necesidades del usuario en función del tiempo, el contexto y el historial de consumo~\cite{burke2002hybrid}.
+
+Ante la existencia de registros estructurados de órdenes, horarios, notas de personalización y catálogo enriquecido de productos en BreakApp, surge la oportunidad de formular e implementar un \textbf{Agente Racional} basado en Inteligencia Artificial~\cite{russell2020artificial}. Dicho agente percibirá el estado contextual del consumidor (identidad, historial, franja horaria, día de la semana y restricciones declaradas) y el estado de la oferta (disponibilidad, categoría complementaria y afinidades de maridaje), evaluará las alternativas mediante una función de utilidad multicriterio y actuará recomendando de forma proactiva el conjunto óptimo de productos y combos sugeridos, reduciendo la fricción en la toma de decisiones y equilibrando el flujo de pedidos hacia la cocina.
+
+\section{Objetivos}
+
+\subsection{General}
+
+Diseñar e implementar un agente racional basado en inteligencia artificial que, a partir del análisis de datos históricos de consumo, atributos del catálogo y variables contextuales temporales en la aplicación BreakApp, genere recomendaciones predictivas y combinaciones óptimas de productos (combos/maridajes) con el fin de maximizar la utilidad percibida por el usuario y minimizar los tiempos de indecisión en los recesos de campus, sujeto a restricciones dietéticas y presupuestales.
+
+\subsection{Específicos}
+
+\begin{itemize}
+    \item Formalizar el entorno y la estructura PEAS del agente (Rendimiento, Entorno, Actuadores y Sensores), delimitando con precisión el espacio de estados, acciones, supuestos operativos y restricciones duras de alérgenos y presupuesto a partir de los datos de \textit{BreakApp}~\cite{russell2020artificial}.
+    \item Diseñar y calibrar una función de utilidad multicriterio que pondere matemáticamente la afinidad histórica por categorías y etiquetas (\textit{tags}), la congruencia temporal (hora del día y día de la semana), la penalización estricta por incumplimiento de restricciones dietéticas (\textit{notes}) y la afinidad de maridaje complementario (\textit{pairing})~\cite{adomavicius2011context}.
+    \item Implementar un motor de recomendación contextual híbrido (Filtrado Basado en Contenido combinado con reglas de afinidad temporal y grafos de maridaje de productos) desacoplado de la interfaz móvil, capaz de procesar solicitudes de inferencia con tiempos de respuesta en milisegundos~\cite{burke2002hybrid}.
+    \item Evaluar el desempeño del agente inteligente comparándolo contra políticas base de recomendación estática (como productos más vendidos o aleatorios), cuantificando la ganancia neta de utilidad, la precisión de acierto en el Top-$K$ y la adherencia estricta a restricciones alimentarias.
+\end{itemize}
+
+\section{Enlace vídeo}
+
+Entrar con el correo institucional \texttt{utadeo.edu.co}:
+
+\vspace{0.3cm}
+\noindent \textbf{Enlace de sustentación:} \url{https://utadeoeduco0-my.sharepoint.com/}
+
+\addcontentsline{toc}{section}{Referencias}
+\printbibliography
+
+\newpage
+\thispagestyle{empty}
+\vspace*{0.3\textwidth}
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=\textwidth]{img/LogoUtadeo.svg}
+\end{figure}
+
+\end{document}

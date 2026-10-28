@@ -1,0 +1,169 @@
+user_id,order_id,timestamp,day_of_week,restaurant_id,product_id,product_name,category,quantity,price_cop,notes,rating
+usr_estudiante_01,#B-101,2026-09-28 08:25:00,Lunes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_01,#B-101,2026-09-28 08:25:00,Lunes,catering_gourmet,prod_snack_01,Galleta Avena,SNACKS,1,3500,,5.0
+usr_estudiante_02,#B-102,2026-09-28 12:33:00,Lunes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-102,2026-09-28 12:33:00,Lunes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-103,2026-09-28 10:22:00,Lunes,punto_verde,prod_snack_05,Parfait de Yogur Griego,SNACKS,1,8000,Sin miel,4.0
+usr_estudiante_03,#B-103,2026-09-28 10:22:00,Lunes,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,,5.0
+usr_estudiante_04,#B-104,2026-09-28 15:23:00,Lunes,punto_verde,prod_snack_04,Sándwich de Pavo y Queso,SNACKS,1,9500,,
+usr_estudiante_04,#B-104,2026-09-28 15:23:00,Lunes,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_estudiante_02,#B-105,2026-09-29 12:58:00,Martes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-105,2026-09-29 12:58:00,Martes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-106,2026-09-29 13:11:00,Martes,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-106,2026-09-29 13:11:00,Martes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-107,2026-09-29 15:20:00,Martes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,1,4500,Con salsa de ajo,
+usr_estudiante_04,#B-107,2026-09-29 15:20:00,Martes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_docente_05,#B-108,2026-09-29 09:54:00,Martes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-108,2026-09-29 09:54:00,Martes,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-109,2026-09-30 08:10:00,Miércoles,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,Sin azúcar,4.0
+usr_estudiante_01,#B-109,2026-09-30 08:10:00,Miércoles,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,1,5500,Bien caliente,5.0
+usr_estudiante_02,#B-110,2026-09-30 12:52:00,Miércoles,catering_gourmet,prod_almuerzo_04,Pasta Boloñesa,ALMUERZOS,1,16500,Extra queso parmesano,5.0
+usr_docente_05,#B-111,2026-09-30 12:33:00,Miércoles,central_food,prod_almuerzo_06,Burrito Mexicano Mixto,ALMUERZOS,1,18000,Poco picante,4.0
+usr_docente_05,#B-111,2026-09-30 12:33:00,Miércoles,central_food,prod_bebida_05,Limonada de Coco,BEBIDAS,1,7500,Baja en azúcar,5.0
+usr_docente_05,#B-111,2026-09-30 12:33:00,Miércoles,catering_gourmet,prod_postre_02,Cheesecake de Frutos Rojos,POSTRES,1,8500,,5.0
+usr_estudiante_02,#B-112,2026-10-01 12:38:00,Jueves,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-112,2026-10-01 12:38:00,Jueves,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-113,2026-10-01 13:15:00,Jueves,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-113,2026-10-01 13:15:00,Jueves,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_03,#B-113,2026-10-01 13:15:00,Jueves,punto_verde,prod_postre_03,Trufa Vegana de Cacao y Dátiles,POSTRES,1,4500,,5.0
+usr_estudiante_04,#B-114,2026-10-01 16:36:00,Jueves,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,2,9000,Con salsa de ajo,4.0
+usr_estudiante_04,#B-114,2026-10-01 16:36:00,Jueves,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_docente_05,#B-115,2026-10-01 09:45:00,Jueves,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-115,2026-10-01 09:45:00,Jueves,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-116,2026-10-02 08:10:00,Viernes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,Con leche deslactosada,5.0
+usr_estudiante_02,#B-117,2026-10-02 12:33:00,Viernes,central_food,prod_almuerzo_03,Hamburguesa Artesanal c/ Papas,ALMUERZOS,1,21000,"Sin cebolla, término tres cuartos",5.0
+usr_estudiante_02,#B-117,2026-10-02 12:33:00,Viernes,central_food,prod_postre_01,Brownie con Helado,POSTRES,1,7500,,5.0
+usr_estudiante_03,#B-118,2026-10-02 13:21:00,Viernes,punto_verde,prod_almuerzo_05,Bowl Falafel Vegano,ALMUERZOS,1,17500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-118,2026-10-02 13:21:00,Viernes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-119,2026-10-02 16:31:00,Viernes,punto_verde,prod_snack_04,Sándwich de Pavo y Queso,SNACKS,1,9500,,5.0
+usr_estudiante_04,#B-119,2026-10-02 16:31:00,Viernes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_estudiante_04,#B-119,2026-10-02 16:31:00,Viernes,catering_gourmet,prod_postre_04,Alfajor Artesanal,POSTRES,2,8000,Para llevar,5.0
+usr_estudiante_01,#B-120,2026-10-05 08:22:00,Lunes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_01,#B-120,2026-10-05 08:22:00,Lunes,catering_gourmet,prod_snack_01,Galleta Avena,SNACKS,1,3500,,5.0
+usr_estudiante_02,#B-121,2026-10-05 12:33:00,Lunes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,5.0
+usr_estudiante_03,#B-122,2026-10-05 10:24:00,Lunes,punto_verde,prod_snack_05,Parfait de Yogur Griego,SNACKS,1,8000,Sin miel,4.0
+usr_estudiante_03,#B-122,2026-10-05 10:24:00,Lunes,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,,5.0
+usr_estudiante_04,#B-123,2026-10-05 16:27:00,Lunes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,1,4500,Con salsa de ajo,
+usr_estudiante_04,#B-123,2026-10-05 16:27:00,Lunes,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_estudiante_02,#B-124,2026-10-06 12:37:00,Martes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,5.0
+usr_estudiante_02,#B-124,2026-10-06 12:37:00,Martes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-125,2026-10-06 13:17:00,Martes,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-125,2026-10-06 13:17:00,Martes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-126,2026-10-06 15:39:00,Martes,catering_gourmet,prod_snack_06,Palito de Queso,SNACKS,2,8400,,
+usr_estudiante_04,#B-126,2026-10-06 15:39:00,Martes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_docente_05,#B-127,2026-10-06 09:46:00,Martes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-127,2026-10-06 09:46:00,Martes,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-128,2026-10-07 08:12:00,Miércoles,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,Sin azúcar,4.0
+usr_estudiante_02,#B-129,2026-10-07 12:36:00,Miércoles,catering_gourmet,prod_almuerzo_04,Pasta Boloñesa,ALMUERZOS,1,16500,Extra queso parmesano,5.0
+usr_estudiante_02,#B-129,2026-10-07 12:36:00,Miércoles,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_docente_05,#B-130,2026-10-07 12:36:00,Miércoles,central_food,prod_almuerzo_06,Burrito Mexicano Mixto,ALMUERZOS,1,18000,Poco picante,4.0
+usr_docente_05,#B-130,2026-10-07 12:36:00,Miércoles,central_food,prod_bebida_05,Limonada de Coco,BEBIDAS,1,7500,Baja en azúcar,5.0
+usr_docente_05,#B-130,2026-10-07 12:36:00,Miércoles,catering_gourmet,prod_postre_02,Cheesecake de Frutos Rojos,POSTRES,1,8500,,5.0
+usr_estudiante_02,#B-131,2026-10-08 12:50:00,Jueves,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-131,2026-10-08 12:50:00,Jueves,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-132,2026-10-08 13:15:00,Jueves,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-132,2026-10-08 13:15:00,Jueves,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_03,#B-132,2026-10-08 13:15:00,Jueves,punto_verde,prod_postre_03,Trufa Vegana de Cacao y Dátiles,POSTRES,1,4500,,5.0
+usr_estudiante_04,#B-133,2026-10-08 15:25:00,Jueves,catering_gourmet,prod_snack_06,Palito de Queso,SNACKS,2,8400,,5.0
+usr_estudiante_04,#B-133,2026-10-08 15:25:00,Jueves,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_docente_05,#B-134,2026-10-08 09:55:00,Jueves,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-134,2026-10-08 09:55:00,Jueves,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-135,2026-10-09 08:25:00,Viernes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_02,#B-136,2026-10-09 12:51:00,Viernes,central_food,prod_almuerzo_03,Hamburguesa Artesanal c/ Papas,ALMUERZOS,1,21000,"Sin cebolla, término tres cuartos",5.0
+usr_estudiante_02,#B-136,2026-10-09 12:51:00,Viernes,central_food,prod_postre_01,Brownie con Helado,POSTRES,1,7500,,5.0
+usr_estudiante_03,#B-137,2026-10-09 13:20:00,Viernes,punto_verde,prod_almuerzo_05,Bowl Falafel Vegano,ALMUERZOS,1,17500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-137,2026-10-09 13:20:00,Viernes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-138,2026-10-09 15:29:00,Viernes,catering_gourmet,prod_snack_06,Palito de Queso,SNACKS,1,4200,,5.0
+usr_estudiante_04,#B-138,2026-10-09 15:29:00,Viernes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_estudiante_04,#B-138,2026-10-09 15:29:00,Viernes,catering_gourmet,prod_postre_04,Alfajor Artesanal,POSTRES,2,8000,Para llevar,5.0
+usr_estudiante_01,#B-139,2026-10-12 08:15:00,Lunes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_01,#B-139,2026-10-12 08:15:00,Lunes,catering_gourmet,prod_snack_01,Galleta Avena,SNACKS,1,3500,,5.0
+usr_estudiante_02,#B-140,2026-10-12 12:32:00,Lunes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-140,2026-10-12 12:32:00,Lunes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-141,2026-10-12 10:33:00,Lunes,punto_verde,prod_snack_05,Parfait de Yogur Griego,SNACKS,1,8000,Sin miel,4.0
+usr_estudiante_03,#B-141,2026-10-12 10:33:00,Lunes,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,,5.0
+usr_estudiante_04,#B-142,2026-10-12 16:28:00,Lunes,catering_gourmet,prod_snack_06,Palito de Queso,SNACKS,2,8400,,
+usr_estudiante_04,#B-142,2026-10-12 16:28:00,Lunes,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_estudiante_02,#B-143,2026-10-13 12:44:00,Martes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_03,#B-144,2026-10-13 13:17:00,Martes,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-144,2026-10-13 13:17:00,Martes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-145,2026-10-13 16:42:00,Martes,catering_gourmet,prod_snack_06,Palito de Queso,SNACKS,2,8400,,4.0
+usr_estudiante_04,#B-145,2026-10-13 16:42:00,Martes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_docente_05,#B-146,2026-10-13 09:39:00,Martes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-146,2026-10-13 09:39:00,Martes,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-147,2026-10-14 08:22:00,Miércoles,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,Sin azúcar,4.0
+usr_estudiante_01,#B-147,2026-10-14 08:22:00,Miércoles,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,1,5500,Bien caliente,5.0
+usr_estudiante_02,#B-148,2026-10-14 12:54:00,Miércoles,catering_gourmet,prod_almuerzo_04,Pasta Boloñesa,ALMUERZOS,1,16500,Extra queso parmesano,4.0
+usr_estudiante_02,#B-148,2026-10-14 12:54:00,Miércoles,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_docente_05,#B-149,2026-10-14 12:19:00,Miércoles,central_food,prod_almuerzo_06,Burrito Mexicano Mixto,ALMUERZOS,1,18000,Poco picante,4.0
+usr_docente_05,#B-149,2026-10-14 12:19:00,Miércoles,central_food,prod_bebida_05,Limonada de Coco,BEBIDAS,1,7500,Baja en azúcar,5.0
+usr_docente_05,#B-149,2026-10-14 12:19:00,Miércoles,catering_gourmet,prod_postre_02,Cheesecake de Frutos Rojos,POSTRES,1,8500,,5.0
+usr_estudiante_02,#B-150,2026-10-15 12:50:00,Jueves,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-150,2026-10-15 12:50:00,Jueves,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-151,2026-10-15 13:23:00,Jueves,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-151,2026-10-15 13:23:00,Jueves,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_03,#B-151,2026-10-15 13:23:00,Jueves,punto_verde,prod_postre_03,Trufa Vegana de Cacao y Dátiles,POSTRES,1,4500,,5.0
+usr_estudiante_04,#B-152,2026-10-15 15:39:00,Jueves,punto_verde,prod_snack_04,Sándwich de Pavo y Queso,SNACKS,2,19000,,5.0
+usr_estudiante_04,#B-152,2026-10-15 15:39:00,Jueves,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_docente_05,#B-153,2026-10-15 09:51:00,Jueves,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-153,2026-10-15 09:51:00,Jueves,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-154,2026-10-16 08:15:00,Viernes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_02,#B-155,2026-10-16 12:57:00,Viernes,central_food,prod_almuerzo_03,Hamburguesa Artesanal c/ Papas,ALMUERZOS,1,21000,"Sin cebolla, término tres cuartos",5.0
+usr_estudiante_02,#B-155,2026-10-16 12:57:00,Viernes,central_food,prod_postre_01,Brownie con Helado,POSTRES,1,7500,,5.0
+usr_estudiante_03,#B-156,2026-10-16 13:10:00,Viernes,punto_verde,prod_almuerzo_05,Bowl Falafel Vegano,ALMUERZOS,1,17500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-156,2026-10-16 13:10:00,Viernes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-157,2026-10-16 15:49:00,Viernes,punto_verde,prod_snack_04,Sándwich de Pavo y Queso,SNACKS,2,19000,,5.0
+usr_estudiante_04,#B-157,2026-10-16 15:49:00,Viernes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_estudiante_04,#B-157,2026-10-16 15:49:00,Viernes,catering_gourmet,prod_postre_04,Alfajor Artesanal,POSTRES,2,8000,Para llevar,5.0
+usr_estudiante_01,#B-158,2026-10-19 08:10:00,Lunes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_01,#B-158,2026-10-19 08:10:00,Lunes,catering_gourmet,prod_snack_01,Galleta Avena,SNACKS,1,3500,,5.0
+usr_estudiante_02,#B-159,2026-10-19 12:39:00,Lunes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,5.0
+usr_estudiante_03,#B-160,2026-10-19 10:15:00,Lunes,punto_verde,prod_snack_05,Parfait de Yogur Griego,SNACKS,1,8000,Sin miel,4.0
+usr_estudiante_03,#B-160,2026-10-19 10:15:00,Lunes,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,,5.0
+usr_estudiante_04,#B-161,2026-10-19 16:47:00,Lunes,punto_verde,prod_snack_04,Sándwich de Pavo y Queso,SNACKS,1,9500,,4.0
+usr_estudiante_04,#B-161,2026-10-19 16:47:00,Lunes,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_estudiante_02,#B-162,2026-10-20 12:57:00,Martes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,5.0
+usr_estudiante_02,#B-162,2026-10-20 12:57:00,Martes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-163,2026-10-20 13:26:00,Martes,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-163,2026-10-20 13:26:00,Martes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-164,2026-10-20 15:24:00,Martes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,2,9000,Con salsa de ajo,
+usr_estudiante_04,#B-164,2026-10-20 15:24:00,Martes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_docente_05,#B-165,2026-10-20 09:51:00,Martes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-165,2026-10-20 09:51:00,Martes,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-166,2026-10-21 08:10:00,Miércoles,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,Sin azúcar,4.0
+usr_estudiante_01,#B-166,2026-10-21 08:10:00,Miércoles,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,1,5500,Bien caliente,5.0
+usr_estudiante_02,#B-167,2026-10-21 12:45:00,Miércoles,catering_gourmet,prod_almuerzo_04,Pasta Boloñesa,ALMUERZOS,1,16500,Extra queso parmesano,4.0
+usr_docente_05,#B-168,2026-10-21 12:26:00,Miércoles,central_food,prod_almuerzo_06,Burrito Mexicano Mixto,ALMUERZOS,1,18000,Poco picante,4.0
+usr_docente_05,#B-168,2026-10-21 12:26:00,Miércoles,central_food,prod_bebida_05,Limonada de Coco,BEBIDAS,1,7500,Baja en azúcar,5.0
+usr_docente_05,#B-168,2026-10-21 12:26:00,Miércoles,catering_gourmet,prod_postre_02,Cheesecake de Frutos Rojos,POSTRES,1,8500,,5.0
+usr_estudiante_02,#B-169,2026-10-22 12:58:00,Jueves,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,5.0
+usr_estudiante_03,#B-170,2026-10-22 13:17:00,Jueves,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-170,2026-10-22 13:17:00,Jueves,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_03,#B-170,2026-10-22 13:17:00,Jueves,punto_verde,prod_postre_03,Trufa Vegana de Cacao y Dátiles,POSTRES,1,4500,,5.0
+usr_estudiante_04,#B-171,2026-10-22 15:20:00,Jueves,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,2,9000,Con salsa de ajo,
+usr_estudiante_04,#B-171,2026-10-22 15:20:00,Jueves,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_docente_05,#B-172,2026-10-22 09:39:00,Jueves,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-172,2026-10-22 09:39:00,Jueves,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0
+usr_estudiante_01,#B-173,2026-10-23 08:12:00,Viernes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_02,#B-174,2026-10-23 12:47:00,Viernes,central_food,prod_almuerzo_03,Hamburguesa Artesanal c/ Papas,ALMUERZOS,1,21000,"Sin cebolla, término tres cuartos",5.0
+usr_estudiante_02,#B-174,2026-10-23 12:47:00,Viernes,central_food,prod_postre_01,Brownie con Helado,POSTRES,1,7500,,5.0
+usr_estudiante_03,#B-175,2026-10-23 13:15:00,Viernes,punto_verde,prod_almuerzo_05,Bowl Falafel Vegano,ALMUERZOS,1,17500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-175,2026-10-23 13:15:00,Viernes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-176,2026-10-23 16:48:00,Viernes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,2,9000,Con salsa de ajo,
+usr_estudiante_04,#B-176,2026-10-23 16:48:00,Viernes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_estudiante_04,#B-176,2026-10-23 16:48:00,Viernes,catering_gourmet,prod_postre_04,Alfajor Artesanal,POSTRES,2,8000,Para llevar,5.0
+usr_estudiante_01,#B-177,2026-10-26 08:30:00,Lunes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,1,6000,Con leche deslactosada,5.0
+usr_estudiante_01,#B-177,2026-10-26 08:30:00,Lunes,catering_gourmet,prod_snack_01,Galleta Avena,SNACKS,1,3500,,5.0
+usr_estudiante_02,#B-178,2026-10-26 12:53:00,Lunes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_02,#B-178,2026-10-26 12:53:00,Lunes,punto_verde,prod_bebida_04,Jugo Natural en Agua,BEBIDAS,1,5000,En agua sin azúcar,5.0
+usr_estudiante_03,#B-179,2026-10-26 10:27:00,Lunes,punto_verde,prod_snack_05,Parfait de Yogur Griego,SNACKS,1,8000,Sin miel,4.0
+usr_estudiante_03,#B-179,2026-10-26 10:27:00,Lunes,catering_gourmet,prod_bebida_02,Café Americano,BEBIDAS,1,4500,,5.0
+usr_estudiante_04,#B-180,2026-10-26 16:43:00,Lunes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,2,9000,Con salsa de ajo,4.0
+usr_estudiante_04,#B-180,2026-10-26 16:43:00,Lunes,central_food,prod_bebida_07,Gaseosa Personal,BEBIDAS,1,4000,,4.0
+usr_estudiante_02,#B-181,2026-10-27 12:37:00,Martes,catering_gourmet,prod_almuerzo_01,Almuerzo Ejecutivo,ALMUERZOS,1,15000,Sin cebolla,4.0
+usr_estudiante_03,#B-182,2026-10-27 13:28:00,Martes,punto_verde,prod_almuerzo_02,Bowl Saludable Quinoa y Pollo,ALMUERZOS,1,18500,"Sin aderezos pesados, extra aguacate",5.0
+usr_estudiante_03,#B-182,2026-10-27 13:28:00,Martes,punto_verde,prod_bebida_06,Té Matcha Frío,BEBIDAS,1,8500,Leche de almendras,5.0
+usr_estudiante_04,#B-183,2026-10-27 15:29:00,Martes,central_food,prod_snack_03,Empanada Horneada de Pollo,SNACKS,1,4500,Con salsa de ajo,
+usr_estudiante_04,#B-183,2026-10-27 15:29:00,Martes,catering_gourmet,prod_bebida_03,Mocaccino,BEBIDAS,1,7000,,4.0
+usr_docente_05,#B-184,2026-10-27 09:55:00,Martes,catering_gourmet,prod_bebida_01,Capuchino,BEBIDAS,2,12000,"En leche de almendras, uno sin espuma",5.0
+usr_docente_05,#B-184,2026-10-27 09:55:00,Martes,catering_gourmet,prod_snack_02,Croissant de Mantequilla,SNACKS,2,11000,,5.0

@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Marimo
+__marimo__/
+
+# LaTeX temporary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+*.run.xml
+*.toc
+*.lot
+*.lof
+*.synctex.gz
+
+# OS
+.DS_Store
+Thumbs.db
