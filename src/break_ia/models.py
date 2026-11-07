@@ -16,15 +16,12 @@ class FoodCategory(str, Enum):
 class Product:
     id: str
     name: str
-    description: str
     price: int
-    prep_time: int
+    prep_time: int  # minutos (punto medio del rango del catalogo, ej. "10-15 min" -> 12)
     category: FoodCategory
     restaurant_id: str
     available: bool
-    calories: int
     tags: List[str] = field(default_factory=list)
-    complementary_category: Optional[str] = None
     pairing_ids: List[str] = field(default_factory=list)
 
 
@@ -39,9 +36,29 @@ class OrderItem:
     product_name: str
     category: FoodCategory
     quantity: int
-    price_cop: int
-    notes: str
+    unit_price: int
+    total_price: int
     rating: Optional[int] = None
+
+
+@dataclass
+class Order:
+    """Una orden = todo lo que un usuario pidio en una misma hora (1 a 4 productos)."""
+
+    order_id: str
+    user_id: str
+    timestamp: str  # momento del primer pedido de esa hora
+    day_of_week: str
+    items: List[OrderItem] = field(default_factory=list)
+
+    @property
+    def n_products(self) -> int:
+        """Cantidad de productos distintos en la orden."""
+        return len(self.items)
+
+    @property
+    def total_price(self) -> int:
+        return sum(i.total_price for i in self.items)
 
 
 @dataclass
@@ -72,3 +89,5 @@ class RecommendationResponse:
     banner_message: str
     top_recommendations: List[RecommendationItem]
     suggested_combo: Optional[dict] = None
+    cluster_id: Optional[int] = None
+    cluster_label: Optional[str] = None

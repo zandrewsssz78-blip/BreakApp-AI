@@ -15,7 +15,8 @@ def _():
 @app.cell
 def _(Path, pl):
     # Carga de catálogo de productos
-    catalog_path = Path("../data/raw/products_catalog.csv")
+    data_dir = Path("data/raw") if Path("data/raw").exists() else Path("../data/raw")
+    catalog_path = data_dir / "products_catalog.csv"
     df_catalog = pl.read_csv(catalog_path)
     print("Dimensiones del catálogo:", df_catalog.shape)
     df_catalog.head(10)
@@ -25,7 +26,7 @@ def _(Path, pl):
 @app.cell
 def _(Path, pl):
     # Carga de historial de pedidos sintéticos
-    orders_path = Path("../data/raw/order_history.csv")
+    orders_path = data_dir / "order_history.csv"
     df_orders = pl.read_csv(orders_path)
     print("Dimensiones de pedidos:", df_orders.shape)
     df_orders.head(10)
@@ -40,7 +41,7 @@ def _(df_orders, pl):
         .agg([
             pl.col("quantity").sum().alias("unidades_vendidas"),
             pl.len().alias("frecuencia_lineas"),
-            pl.col("price_cop").sum().alias("ingresos_totales_cop"),
+            pl.col("total_price").sum().alias("ingresos_totales_cop"),
         ])
         .sort("ingresos_totales_cop", descending=True)
     )
@@ -50,12 +51,50 @@ def _(df_orders, pl):
 
 @app.cell
 def _(df_orders, pl):
-    # Análisis de consumo por usuario y días
-    user_summary = (
-        df_orders.group_by(["user_id", "day_of_week"])
+    # Una orden = todo lo que un usuario pidió en la misma hora (1 a 4 productos)
+    df_ordenes = (
+        df_orders.group_by("order_id")
         .agg([
-            pl.len().alias("total_pedidos"),
-            pl.col("price_cop").mean().round(0).alias("gasto_promedio_cop")
+            pl.col("user_id").first(),
+            pl.col("timestamp").first(),
+            pl.col("day_of_week").first(),
+            pl.len().alias("n_productos"),
+            pl.col("total_price").sum().alias("total_orden_cop"),
+        ])
+    )
+    productos_por_orden = (
+        df_ordenes.group_by("n_productos")
+        .agg(pl.len().alias("ordenes"))
+        .sort("n_productos")
+    )
+    print("Órdenes:", df_ordenes.height, "| Líneas de producto:", df_orders.height)
+    productos_por_orden
+    return df_ordenes, productos_por_orden
+
+
+@app.cell
+def _(df_ordenes, pl):
+    # Órdenes a lo largo del día
+    ordenes_por_hora = (
+        df_ordenes.with_columns(
+            pl.col("timestamp").str.slice(11, 2).cast(pl.Int32).alias("hora")
+        )
+        .group_by("hora")
+        .agg(pl.len().alias("ordenes"))
+        .sort("hora")
+    )
+    ordenes_por_hora
+    return (ordenes_por_hora,)
+
+
+@app.cell
+def _(df_ordenes, pl):
+    # Análisis de consumo por usuario y días (ahora por orden, no por línea)
+    user_summary = (
+        df_ordenes.group_by(["user_id", "day_of_week"])
+        .agg([
+            pl.len().alias("total_ordenes"),
+            pl.col("total_orden_cop").mean().round(0).alias("gasto_promedio_orden_cop"),
         ])
         .sort(["user_id", "day_of_week"])
     )
