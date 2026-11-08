@@ -1,0 +1,12 @@
+¿Hora de almorzar? Te recomendamos Almuerzo de Ensalada con Aromática de Hierbas recién preparado.
+PROD_004	Almuerzo de Ensalada	$14,500	score=0.7845
+  - Es una opción frecuente en este horario.
+PROD_002	Ajiaco Santafereño	$16,500	score=0.7117
+  - Es una opción frecuente en este horario.
+PROD_029	Jugo Natural en Agua	$5,500	score=0.7060
+  - Es una opción frecuente en este horario.
+PROD_001	Bandeja Paisa Break	$18,500	score=0.6845
+  - Es una opción frecuente en este horario.
+PROD_003	Mote de Queso	$15,500	score=0.6549
+  - Es una opción frecuente en este horario.
+cluster=None | None

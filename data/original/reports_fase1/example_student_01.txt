@@ -1,0 +1,7 @@
+¿Listo para tu descanso matutino? Te sugerimos Capuchino con Almojábana en Catering Gourmet.
+PROD_006	Capuchino	$5,500	utilidad=0.8769
+PROD_025	Café	$3,200	utilidad=0.8292
+PROD_005	Tinto	$2,500	utilidad=0.8177
+PROD_018	Almojábana	$3,500	utilidad=0.7275
+PROD_020	Arepa de Queso	$4,200	utilidad=0.7107
+cluster=1 | Mañana · Bebidas

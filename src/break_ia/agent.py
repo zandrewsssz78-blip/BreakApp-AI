@@ -12,6 +12,7 @@ from break_ia.data_loader import (
     load_products,
     load_user_archetypes,
 )
+from break_ia.hybrid import HybridSignals
 from break_ia.models import (
     Order,
     OrderItem,
@@ -34,6 +35,7 @@ class BreakAgent:
         n_clusters: Optional[int] = None,
         cold_start_users: Optional[Set[str]] = None,
         cold_start_orders: int = 0,
+        use_hybrid: bool = True,
     ):
         """until: solo usa pedidos con timestamp < until (para evaluar sin trampa).
         use_clusters: False = solo reglas/utilidad, sin aprendizaje no supervisado.
@@ -50,6 +52,11 @@ class BreakAgent:
             self.orders = [o for o in self.orders if o.timestamp < until]
         self.archetypes = load_user_archetypes(dataset_path)
         self.restaurant_names = self._load_restaurant_names(dataset_path)
+        # Señales colaborativas y de contenido entrenadas solo con el historial filtrado.
+        self.cold_start_users = set(cold_start_users or ())
+        self.use_hybrid = use_hybrid
+        hybrid_training_lines = [o for o in self.orders if o.user_id not in self.cold_start_users]
+        self.hybrid = HybridSignals(hybrid_training_lines, self.catalog) if use_hybrid else None
 
         # Una orden = todo lo que el usuario pidio en la misma hora (1 a 4 productos)
         self.order_groups: List[Order] = group_orders(self.orders)
@@ -99,38 +106,69 @@ class BreakAgent:
                 cluster_id = self.clusters.assign(
                     self.user_orders.get(user_id, []), self.user_order_groups.get(user_id, [])
                 )
+        profile_id = None if user_id in self.cold_start_users else user_id
         return {
             "user_id": user_id,
             "datetime": dt,
             "day_of_week": day_of_week,
             "cluster_id": cluster_id,
             "user_orders": self.user_orders.get(user_id, []),
-            "profile": self.archetypes.get(
-                user_id,
-                UserProfile(
-                    user_id=user_id,
-                    archetype_name="Estudiante General",
-                    habitual_time_range="12:00 - 02:00 PM",
-                    frequent_days=["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
-                    min_budget=5000,
-                    max_budget=20000,
-                    notes_clues="",
-                    expected_recommendation="Menú del día recomendado",
-                ),
-            ),
+            "profile": self._profile_for_user(user_id, profile_id),
         }
+
+    def _profile_for_user(self, user_id: str, profile_id: Optional[str]) -> UserProfile:
+        """Usa arquetipo conocido o deriva presupuesto/horario desde el historial disponible."""
+        if profile_id is not None and profile_id in self.archetypes:
+            return self.archetypes[profile_id]
+        history = self.user_orders.get(user_id, [])
+        if history:
+            prices = sorted(item.unit_price for item in history)
+            low = prices[max(0, int(0.10 * (len(prices) - 1)))]
+            high = prices[min(len(prices) - 1, int(0.90 * (len(prices) - 1)))]
+            hours = []
+            days = []
+            for item in history:
+                try:
+                    dt = datetime.strptime(item.timestamp, "%Y-%m-%d %H:%M:%S")
+                    hours.append(dt.hour)
+                    days.append(item.day_of_week)
+                except ValueError:
+                    continue
+            start = max(0, min(hours, default=12) - 1)
+            end = min(23, max(hours, default=13) + 1)
+            frequent = sorted(set(days), key=days.count, reverse=True)[:3]
+            return UserProfile(
+                user_id=user_id,
+                archetype_name="Perfil aprendido del historial",
+                habitual_time_range=f"{start:02d}:00 - {end:02d}:00",
+                frequent_days=frequent or ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+                min_budget=max(2000, int(low * 0.8)),
+                max_budget=max(int(high * 1.2), int(low * 0.8) + 2000),
+                notes_clues="Perfil derivado de compras observadas; no contiene preferencias alimenticias inferidas.",
+                expected_recommendation="Productos afines al historial y horario observado",
+            )
+        return UserProfile(
+            user_id=user_id,
+            archetype_name="Estudiante General",
+            habitual_time_range="12:00 - 14:00",
+            frequent_days=["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+            min_budget=2000,
+            max_budget=22000,
+            notes_clues="",
+            expected_recommendation="Menú del día recomendado",
+        )
 
     def filter_candidates(self, perception: dict) -> List[Product]:
         """Hard restriction filter: availability and mandatory catalog constraints."""
         candidates = [p for p in self.catalog.values() if p.available]
         return candidates
 
-    def _score(self, prod: Product, perception: dict, dt: datetime, day_of_week: str) -> float:
+    def _score_details(self, prod: Product, perception: dict, dt: datetime, day_of_week: str):
         cluster_aff = None
         if self.clusters is not None:
             slot = parse_time_slot(dt.hour, dt.minute)
             cluster_aff = self.clusters.affinity(perception["cluster_id"], slot, prod)
-        return compute_utility_score(
+        rule_score = compute_utility_score(
             product=prod,
             user_orders=perception["user_orders"],
             user_profile=perception["profile"],
@@ -139,9 +177,40 @@ class BreakAgent:
             catalog=self.catalog,
             cluster_affinity=cluster_aff,
         )
+        slot = parse_time_slot(dt.hour, dt.minute)
+        if self.hybrid is None:
+            return rule_score, ["Se ajusta al historial, presupuesto y horario."], {}
+        hybrid_score, signals = self.hybrid.score(perception["user_id"], prod, slot)
+        # Mezcla adaptativa: prioriza el perfil individual y refuerza con filtrado colaborativo.
+        n_hist = len(perception["user_orders"])
+        w_rule = 0.72 if n_hist >= 3 else (0.60 if n_hist >= 1 else 0.15)
+        final_score = w_rule * rule_score + (1.0 - w_rule) * hybrid_score
+        explanations = []
+        if signals["user_cf"] >= 0.15:
+            explanations.append("Estudiantes con un historial parecido también compran este producto.")
+        if signals["item_cf"] >= 0.15:
+            explanations.append("Suele aparecer en pedidos junto con productos de tu historial.")
+        if signals["content"] >= 0.35:
+            explanations.append("Coincide con categorías o etiquetas que sueles elegir.")
+        if signals["popularity"] >= 0.35:
+            explanations.append("Es una opción frecuente en este horario.")
+        if perception["user_orders"]:
+            if any(o.product_id == prod.id for o in perception["user_orders"]):
+                explanations.append("Ya forma parte de tus compras anteriores.")
+        if not explanations:
+            explanations.append("Se ajusta al horario y al contexto de compra.")
+        return final_score, explanations, signals
+
+    def _score(self, prod: Product, perception: dict, dt: datetime, day_of_week: str) -> float:
+        return self._score_details(prod, perception, dt, day_of_week)[0]
 
     def _best_pairing(
-        self, prod: Product, perception: dict, dt: datetime, day_of_week: str
+        self,
+        prod: Product,
+        perception: dict,
+        dt: datetime,
+        day_of_week: str,
+        score_map: Optional[Dict[str, float]] = None,
     ) -> Optional[Product]:
         """Elige el complemento (pairing_ids) con mayor utilidad para este usuario."""
         best: Optional[Product] = None
@@ -150,7 +219,7 @@ class BreakAgent:
             cand = self.catalog.get(pid)
             if cand is None or not cand.available:
                 continue
-            s = self._score(cand, perception, dt, day_of_week)
+            s = score_map[pid] if (score_map and pid in score_map) else self._score(cand, perception, dt, day_of_week)
             if s > best_score:
                 best, best_score = cand, s
         return best
@@ -160,17 +229,22 @@ class BreakAgent:
         perception = self.perceive(user_id, dt, day_of_week)
         candidates = self.filter_candidates(perception)
 
-        scored = [(self._score(p, perception, dt, day_of_week), p) for p in candidates]
-        scored.sort(key=lambda x: x[0], reverse=True)
+        scored = [
+            (self._score_details(p, perception, dt, day_of_week), p)
+            for p in candidates
+        ]
+        score_map = {p.id: details[0] for details, p in scored}
+        scored.sort(key=lambda x: x[0][0], reverse=True)
 
         top_k: List[RecommendationItem] = [
             RecommendationItem(
                 product=prod,
-                utility_score=round(score, 4),
+                utility_score=round(details[0], 4),
                 matched_tags=prod.tags,
-                pairing_product=self._best_pairing(prod, perception, dt, day_of_week),
+                pairing_product=self._best_pairing(prod, perception, dt, day_of_week, score_map),
+                explanations=details[1],
             )
-            for score, prod in scored[:k]
+            for details, prod in scored[:k]
         ]
 
         # Generate contextual banner message

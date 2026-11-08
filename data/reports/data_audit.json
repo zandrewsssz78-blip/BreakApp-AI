@@ -1,0 +1,81 @@
+{
+  "all": {
+    "order_lines": 2152,
+    "users": 130,
+    "orders": 1277,
+    "lines_per_user_mean": 16.55,
+    "lines_per_user_median": 12.0,
+    "orders_per_user_mean": 9.82,
+    "orders_per_user_min": 2,
+    "orders_per_user_max": 76,
+    "orders_per_user_median": 7.5,
+    "order_frequency_bands": {
+      "regular": 54,
+      "frecuente": 54,
+      "ocasional": 22
+    },
+    "categories": {
+      "BEBIDAS": 861,
+      "SNACKS": 584,
+      "ALMUERZOS": 370,
+      "POSTRES": 337
+    },
+    "unit_price_mean": 6265.38,
+    "unit_price_median": 4500.0,
+    "date_min": "2026-08-03 08:15:44",
+    "date_max": "2026-11-27 16:30:04"
+  },
+  "original": {
+    "order_lines": 1120,
+    "users": 30,
+    "orders": 563,
+    "lines_per_user_mean": 37.33,
+    "lines_per_user_median": 19.0,
+    "orders_per_user_mean": 18.77,
+    "orders_per_user_min": 6,
+    "orders_per_user_max": 76,
+    "orders_per_user_median": 9.0,
+    "order_frequency_bands": {
+      "frecuente": 20,
+      "regular": 10
+    },
+    "categories": {
+      "BEBIDAS": 452,
+      "SNACKS": 283,
+      "ALMUERZOS": 223,
+      "POSTRES": 162
+    },
+    "unit_price_mean": 6735.89,
+    "unit_price_median": 5000.0,
+    "date_min": "2026-08-03 08:45:07",
+    "date_max": "2026-11-27 16:30:04"
+  },
+  "synthetic": {
+    "order_lines": 1032,
+    "users": 100,
+    "orders": 714,
+    "lines_per_user_mean": 10.32,
+    "lines_per_user_median": 9.0,
+    "orders_per_user_mean": 7.14,
+    "orders_per_user_min": 2,
+    "orders_per_user_max": 13,
+    "orders_per_user_median": 6.0,
+    "order_frequency_bands": {
+      "regular": 44,
+      "frecuente": 34,
+      "ocasional": 22
+    },
+    "categories": {
+      "BEBIDAS": 409,
+      "ALMUERZOS": 147,
+      "SNACKS": 301,
+      "POSTRES": 175
+    },
+    "unit_price_mean": 5754.75,
+    "unit_price_median": 4200.0,
+    "date_min": "2026-08-03 08:15:44",
+    "date_max": "2026-11-06 15:14:32"
+  },
+  "synthetic_identification": "usr_sintetico_* y order_id SYN_*",
+  "interpretation": "Los datos sintéticos amplían diversidad diseñada; no son evidencia de demanda real."
+}

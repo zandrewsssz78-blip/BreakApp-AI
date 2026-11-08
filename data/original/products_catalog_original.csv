@@ -1,0 +1,88 @@
+product_id,name,restaurant_id,category,price,prep_time,available,tags,pairing_ids
+PROD_001,Bandeja Paisa Break,catering_gourmet,ALMUERZOS,18500,10-15 min,True,tradicional|ejecutivo|proteina|almuerzo|contundente,PROD_015|PROD_011|PROD_022
+PROD_002,Ajiaco Santafereño,catering_gourmet,ALMUERZOS,16500,10-12 min,True,tradicional|ejecutivo|sopa|pollo|sin_picante|almuerzo,PROD_013|PROD_014|PROD_022
+PROD_003,Mote de Queso,catering_gourmet,ALMUERZOS,15500,10-12 min,True,tradicional|sopa|queso|vegetariano|almuerzo,PROD_015|PROD_012
+PROD_004,Almuerzo de Ensalada,catering_gourmet,ALMUERZOS,14500,5-8 min,True,saludable|fitness|vegetariano|vegano|bajo_calorias|sin_cebolla,PROD_010|PROD_014
+PROD_005,Tinto,catering_gourmet,BEBIDAS,2500,2-3 min,True,cafe|caliente|manana|sin_azucar|vegano|deslactosado,PROD_018|PROD_019|PROD_017
+PROD_006,Capuchino,catering_gourmet,BEBIDAS,5500,3-5 min,True,cafe|caliente|manana|deslactosado|leche_almendras|gourmet,PROD_021|PROD_018|PROD_019
+PROD_007,Chocolate de Leche,catering_gourmet,BEBIDAS,4800,3-5 min,True,caliente|manana|dulce|lacteo,PROD_020|PROD_018|PROD_021
+PROD_008,Chocolate en Agua,catering_gourmet,BEBIDAS,4200,3-5 min,True,caliente|manana|deslactosado|vegano,PROD_020|PROD_019
+PROD_009,Aromática de Panela,catering_gourmet,BEBIDAS,2800,2-4 min,True,caliente|manana|tarde|natural|vegano|deslactosado,PROD_018|PROD_020
+PROD_010,Aromática de Hierbas,catering_gourmet,BEBIDAS,2800,2-4 min,True,caliente|natural|saludable|fitness|sin_azucar|vegano,PROD_019|PROD_018
+PROD_011,Coca-cola personal,catering_gourmet,BEBIDAS,4000,1-2 min,True,fria|gaseosa|tarde|almuerzo|compartir,PROD_017|PROD_016|PROD_023
+PROD_012,Sprite,catering_gourmet,BEBIDAS,4000,1-2 min,True,fria|gaseosa|refrescante|almuerzo,PROD_017|PROD_016
+PROD_013,Jugos Hit de Mora,catering_gourmet,BEBIDAS,3500,1-2 min,True,fria|jugo|fruta|almuerzo,PROD_016|PROD_017
+PROD_014,Jugos Hit de Mango,catering_gourmet,BEBIDAS,3500,1-2 min,True,fria|jugo|fruta|almuerzo,PROD_016|PROD_017
+PROD_015,Jugos Hit de Lulo,catering_gourmet,BEBIDAS,3500,1-2 min,True,fria|jugo|fruta|almuerzo,PROD_016|PROD_017
+PROD_016,Pastel de pollo,catering_gourmet,SNACKS,5200,3-5 min,True,horneado|pollo|salado|manana|tarde,PROD_011|PROD_013|PROD_014
+PROD_017,Empanada de carne,catering_gourmet,SNACKS,3800,2-4 min,True,tradicional|carne|salado|tarde|compartir,PROD_011|PROD_012|PROD_005
+PROD_018,Almojábana,catering_gourmet,SNACKS,3500,2-3 min,True,panaderia|horneado|queso|manana|tradicional,PROD_006|PROD_007|PROD_005
+PROD_019,Pandebono,catering_gourmet,SNACKS,3500,2-3 min,True,panaderia|horneado|queso|manana|tradicional,PROD_006|PROD_005|PROD_007
+PROD_020,Arepa de Queso,catering_gourmet,SNACKS,4200,4-6 min,True,tradicional|queso|manana|vegetariano|sin_cebolla,PROD_007|PROD_008|PROD_006
+PROD_021,Croissant de Chocolate,catering_gourmet,POSTRES,4800,2-4 min,True,panaderia|horneado|chocolate|dulce|manana|gourmet,PROD_006|PROD_005
+PROD_022,Arroz con Leche,catering_gourmet,POSTRES,5000,2-3 min,True,tradicional|dulce|postre|lacteo|gourmet,PROD_005|PROD_010
+PROD_023,Chocorramo,catering_gourmet,POSTRES,3200,1-2 min,True,dulce|chocolate|tarde|rapido,PROD_011|PROD_007
+PROD_024,Chocolatina Jet,catering_gourmet,POSTRES,1800,1-2 min,True,dulce|chocolate|rapido|economico,PROD_005|PROD_006
+PROD_025,Café,fruit_coffee,BEBIDAS,3200,2-4 min,True,cafe|caliente|manana|sin_azucar|vegano|deslactosado,PROD_038|PROD_039
+PROD_026,Frappé de Café y Caramelo,fruit_coffee,BEBIDAS,8500,4-6 min,True,cafe|fria|dulce|tarde|energizante|gourmet,PROD_038|PROD_039|PROD_041
+PROD_027,Smoothie de Mango y Passion,fruit_coffee,BEBIDAS,8000,4-6 min,True,fruta|fria|saludable|fitness|natural|vegano|sin_azucar,PROD_034|PROD_038
+PROD_028,Jugo Natural en Leche,fruit_coffee,BEBIDAS,6500,4-5 min,True,jugo|fruta|fria|deslactosado|almuerzo|gourmet,PROD_038|PROD_046
+PROD_029,Jugo Natural en Agua,fruit_coffee,BEBIDAS,5500,3-5 min,True,jugo|fruta|fria|saludable|fitness|sin_azucar|vegano|almuerzo,PROD_034|PROD_035
+PROD_030,Aromática de Frutas,fruit_coffee,BEBIDAS,4200,3-4 min,True,caliente|fruta|natural|saludable|fitness|sin_azucar|vegano,PROD_038|PROD_037
+PROD_031,Quatro,fruit_coffee,BEBIDAS,4000,1-2 min,True,fria|gaseosa|tarde|compartir,PROD_039|PROD_045
+PROD_032,Speed Max,fruit_coffee,BEBIDAS,3800,1-2 min,True,fria|energizante|tarde|codigo,PROD_038|PROD_039
+PROD_033,Agua,fruit_coffee,BEBIDAS,3000,1-2 min,True,fria|saludable|fitness|sin_calorias|vegano|sin_azucar,PROD_034|PROD_035
+PROD_034,Parfait de Yogurt,fruit_coffee,SNACKS,9500,4-6 min,True,saludable|fitness|yogurt|fruta|manana|vegetariano,PROD_029|PROD_030|PROD_033
+PROD_035,Ensalada de Frutas Premium,fruit_coffee,SNACKS,12500,5-8 min,True,saludable|fitness|fruta|vegetariano|fresco|sin_cebolla,PROD_029|PROD_033|PROD_027
+PROD_036,Ensalada de Frutas con Helado,fruit_coffee,SNACKS,11000,5-7 min,True,fruta|helado|dulce|tarde|vegetariano,PROD_033|PROD_029
+PROD_037,Queso con Aguapanela,fruit_coffee,SNACKS,6800,4-5 min,True,tradicional|caliente|queso|manana|tarde|gourmet,PROD_025|PROD_030
+PROD_038,Muffin de arándanos,fruit_coffee,POSTRES,5500,2-3 min,True,panaderia|horneado|dulce|manana|gourmet,PROD_025|PROD_026|PROD_030
+PROD_039,Brownie con Helado,fruit_coffee,POSTRES,8500,3-5 min,True,postre|chocolate|helado|viernes_gusto|dulce|gourmet,PROD_025|PROD_026|PROD_033
+PROD_040,Fresas con Crema,fruit_coffee,POSTRES,9000,3-5 min,True,postre|fruta|dulce|gourmet|bajo_azucar,PROD_025|PROD_033
+PROD_041,Fresas con Chocolate,fruit_coffee,POSTRES,8800,3-5 min,True,postre|fruta|chocolate|dulce|gourmet,PROD_025|PROD_026
+PROD_042,Copa de Helado con Frutas,fruit_coffee,POSTRES,9200,4-6 min,True,postre|helado|fruta|dulce|tarde,PROD_033|PROD_025
+PROD_043,Banana Split Especial,fruit_coffee,POSTRES,11500,5-7 min,True,postre|helado|fruta|viernes_gusto|compartir,PROD_033|PROD_026
+PROD_044,Paleta Artesanal de Frutas,fruit_coffee,POSTRES,4800,1-2 min,True,postre|fruta|fria|natural|vegano,PROD_033
+PROD_045,Postre de Maracuyá,fruit_coffee,POSTRES,6500,2-3 min,True,postre|fruta|dulce|gourmet|almuerzo,PROD_025|PROD_029
+PROD_046,Postre Tres Leches,fruit_coffee,POSTRES,7000,2-3 min,True,postre|dulce|gourmet|viernes_gusto|almuerzo,PROD_025|PROD_030
+PROD_047,Pizza Hawaiana,peoples_pizza,ALMUERZOS,9500,5-8 min,True,pizza|horneado|queso|almuerzo|tarde,PROD_061|PROD_062|PROD_059
+PROD_048,Pizza Pepperoni,peoples_pizza,ALMUERZOS,10000,5-8 min,True,pizza|horneado|pepperoni|viernes_gusto|sin_cebolla|almuerzo,PROD_064|PROD_061|PROD_060
+PROD_049,Pizza de Pollo con Champiñones,peoples_pizza,ALMUERZOS,10500,6-8 min,True,pizza|horneado|pollo|gourmet|compartir|almuerzo,PROD_062|PROD_061|PROD_060
+PROD_050,Pizza Margarita,peoples_pizza,ALMUERZOS,9000,5-7 min,True,pizza|horneado|vegetariano|saludable|sin_cebolla|almuerzo,PROD_065|PROD_064|PROD_060
+PROD_051,Pizza de Jamón y Queso,peoples_pizza,ALMUERZOS,9200,5-7 min,True,pizza|horneado|queso|sin_cebolla|almuerzo,PROD_061|PROD_063|PROD_059
+PROD_052,Pizza Vegetariana,peoples_pizza,ALMUERZOS,9800,5-8 min,True,pizza|horneado|vegetariano|saludable|fitness|almuerzo,PROD_065|PROD_062|PROD_060
+PROD_053,Pizza Mexicana,peoples_pizza,ALMUERZOS,10800,6-8 min,True,pizza|horneado|picante|carne|almuerzo,PROD_064|PROD_061|PROD_059
+PROD_054,Pizza Cuatro Quesos,peoples_pizza,ALMUERZOS,10500,5-8 min,True,pizza|horneado|queso|gourmet|vegetariano|sin_cebolla|compartir,PROD_064|PROD_065|PROD_060
+PROD_055,Pizza de Carnes,peoples_pizza,ALMUERZOS,11000,6-8 min,True,pizza|horneado|carne|viernes_gusto|sin_cebolla|almuerzo,PROD_064|PROD_061|PROD_059
+PROD_056,Salchipapa Tradicional,peoples_pizza,ALMUERZOS,11500,8-10 min,True,rapida|salado|tarde|compartir|salsa_ajo|codigo,PROD_061|PROD_064|PROD_062
+PROD_057,Salchipapa Especial (Queso y Tocineta),peoples_pizza,ALMUERZOS,15500,10-12 min,True,rapida|queso|tocineta|viernes_gusto|sin_cebolla|compartir,PROD_064|PROD_061
+PROD_058,Salchipapa Especial (Pollo y Queso),peoples_pizza,ALMUERZOS,16000,10-12 min,True,rapida|pollo|queso|viernes_gusto|compartir,PROD_062|PROD_061
+PROD_059,Palitos de Queso,peoples_pizza,SNACKS,4500,3-5 min,True,horneado|queso|salado|tarde|compartir|salsa_ajo|codigo,PROD_061|PROD_062|PROD_064
+PROD_060,Pan de Ajo con Queso,peoples_pizza,SNACKS,5000,4-6 min,True,horneado|queso|ajo|tarde|compartir|codigo,PROD_064|PROD_065
+PROD_061,Colombiana,peoples_pizza,BEBIDAS,4000,1-2 min,True,fria|gaseosa|tarde|compartir|almuerzo,PROD_047|PROD_056|PROD_059
+PROD_062,Manzana Postobón,peoples_pizza,BEBIDAS,4000,1-2 min,True,fria|gaseosa|dulce|almuerzo|tarde,PROD_049|PROD_059
+PROD_063,Uva Postobón,peoples_pizza,BEBIDAS,4000,1-2 min,True,fria|gaseosa|dulce|tarde,PROD_051|PROD_059
+PROD_064,Pepsi Personal,peoples_pizza,BEBIDAS,4000,1-2 min,True,fria|gaseosa|tarde|compartir|almuerzo,PROD_048|PROD_055|PROD_057
+PROD_065,Agua con Gas,peoples_pizza,BEBIDAS,3200,1-2 min,True,fria|saludable|fitness|sin_calorias|sin_azucar|vegano,PROD_052|PROD_050
+PROD_066,Hamburguesa Sencilla,world_gourmet,ALMUERZOS,13500,8-12 min,True,rapida|carne|viernes_gusto|sin_cebolla|almuerzo,PROD_087|PROD_075|PROD_081
+PROD_067,Perro Caliente Sencillo,world_gourmet,ALMUERZOS,10500,6-9 min,True,rapida|salado|almuerzo|tarde,PROD_087|PROD_074|PROD_076
+PROD_068,Sándwich Especial,world_gourmet,ALMUERZOS,11500,6-8 min,True,ejecutivo|pollo|queso|sin_cebolla|almuerzo,PROD_087|PROD_075|PROD_081
+PROD_069,Sándwich Sencillo,world_gourmet,SNACKS,8500,5-7 min,True,ligero|jamon|queso|sin_cebolla|manana|tarde,PROD_087|PROD_079
+PROD_070,Empanada de Queso,world_gourmet,SNACKS,3800,2-4 min,True,queso|salado|tarde|compartir|salsa_ajo|codigo,PROD_087|PROD_073
+PROD_071,Empanada Criolla,world_gourmet,SNACKS,3800,2-4 min,True,tradicional|carne|salado|tarde|compartir|codigo,PROD_087|PROD_070
+PROD_072,Empanada Ranchera,world_gourmet,SNACKS,4200,2-4 min,True,salado|ranchera|tarde|compartir|codigo,PROD_087|PROD_071
+PROD_073,Arepa de Choclo con Queso,world_gourmet,SNACKS,5500,4-6 min,True,tradicional|queso|dulce_salado|manana|tarde,PROD_087|PROD_070
+PROD_074,Papas Margarita de Tomate,world_gourmet,SNACKS,3200,1-2 min,True,paquete|salado|rapido|tarde,PROD_087|PROD_086
+PROD_075,Papas Margarita de Pollo,world_gourmet,SNACKS,3200,1-2 min,True,paquete|salado|rapido|tarde,PROD_087|PROD_082
+PROD_076,Papas Margarita de Limón,world_gourmet,SNACKS,3200,1-2 min,True,paquete|salado|rapido|tarde,PROD_087|PROD_084
+PROD_077,Todorico Natural,world_gourmet,SNACKS,3800,1-2 min,True,paquete|salado|compartir|tarde,PROD_087|PROD_083
+PROD_078,Todorico Picante,world_gourmet,SNACKS,3800,1-2 min,True,paquete|picante|compartir|tarde,PROD_087
+PROD_079,Platanitos Dulces,world_gourmet,SNACKS,3000,1-2 min,True,paquete|dulce|vegano|tarde,PROD_087
+PROD_080,Platanitos Salados,world_gourmet,SNACKS,3000,1-2 min,True,paquete|salado|vegano|tarde,PROD_087
+PROD_081,Donas,world_gourmet,POSTRES,4500,1-2 min,True,postre|dulce|manana|tarde,PROD_087
+PROD_082,Gansito,world_gourmet,POSTRES,2800,1-2 min,True,postre|dulce|chocolate|tarde,PROD_087
+PROD_083,Chocolatina Jumbo,world_gourmet,POSTRES,4200,1-2 min,True,postre|chocolate|dulce|tarde,PROD_087
+PROD_084,Galletas Festival x4,world_gourmet,POSTRES,2200,1-2 min,True,galletas|dulce|economico|tarde,PROD_087
+PROD_085,Galletas Festival x6,world_gourmet,POSTRES,3000,1-2 min,True,galletas|dulce|compartir|tarde,PROD_087
+PROD_086,Galletas Oreo,world_gourmet,POSTRES,2800,1-2 min,True,galletas|chocolate|dulce|tarde,PROD_087
+PROD_087,Jugo del Valle,world_gourmet,BEBIDAS,3500,1-2 min,True,fria|jugo|fruta|tarde|almuerzo,PROD_066|PROD_071|PROD_068

@@ -1,0 +1,25 @@
+¿Listo para tu descanso matutino? Te sugerimos Capuchino con Almojábana en Catering Gourmet.
+PROD_006	Capuchino	$5,500	score=0.8088
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Es una opción frecuente en este horario.
+  - Ya forma parte de tus compras anteriores.
+PROD_025	Café	$3,200	score=0.7519
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Es una opción frecuente en este horario.
+  - Ya forma parte de tus compras anteriores.
+PROD_005	Tinto	$2,500	score=0.7446
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Es una opción frecuente en este horario.
+  - Ya forma parte de tus compras anteriores.
+PROD_018	Almojábana	$3,500	score=0.6556
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Es una opción frecuente en este horario.
+  - Ya forma parte de tus compras anteriores.
+PROD_019	Pandebono	$3,500	score=0.5848
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Ya forma parte de tus compras anteriores.
+cluster=0 | Mañana · Bebidas

@@ -1,0 +1,7 @@
+¿Hora de almorzar? Te recomendamos Ajiaco Santafereño con Jugos Hit de Mora recién preparado.
+PROD_002	Ajiaco Santafereño	$16,500	utilidad=0.6900
+PROD_004	Almuerzo de Ensalada	$14,500	utilidad=0.6802
+PROD_001	Bandeja Paisa Break	$18,500	utilidad=0.6688
+PROD_050	Pizza Margarita	$9,000	utilidad=0.6623
+PROD_003	Mote de Queso	$15,500	utilidad=0.6574
+cluster=None | None

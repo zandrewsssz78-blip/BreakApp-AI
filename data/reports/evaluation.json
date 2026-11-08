@@ -1,0 +1,84 @@
+{
+  "as_of": "2026-11-06 20:47:23",
+  "total_orders_used": 1183,
+  "split": "temporal 80/20; train strictly before cutoff",
+  "cutoff": "2026-10-19 12:35:50",
+  "train_orders": 946,
+  "test_orders": 237,
+  "k": 5,
+  "models": {
+    "baseline_global": {
+      "precision": 0.0532,
+      "recall": 0.1712,
+      "ndcg": 0.1041,
+      "hit": 0.2658,
+      "map": 0.0678,
+      "latency_ms_mean": 0.001,
+      "latency_ms_p95": 0.001
+    },
+    "baseline_slot": {
+      "precision": 0.0751,
+      "recall": 0.2264,
+      "ndcg": 0.1668,
+      "hit": 0.3207,
+      "map": 0.1247,
+      "latency_ms_mean": 0.001,
+      "latency_ms_p95": 0.002
+    },
+    "cold_start": {
+      "precision": 0.0641,
+      "recall": 0.1899,
+      "ndcg": 0.1305,
+      "hit": 0.2996,
+      "map": 0.0909,
+      "latency_ms_mean": 2.398,
+      "latency_ms_p95": 2.857
+    },
+    "rules_only": {
+      "precision": 0.1418,
+      "recall": 0.4575,
+      "ndcg": 0.342,
+      "hit": 0.6076,
+      "map": 0.2715,
+      "latency_ms_mean": 10.963,
+      "latency_ms_p95": 37.843
+    },
+    "rules_clusters": {
+      "precision": 0.1443,
+      "recall": 0.4648,
+      "ndcg": 0.3447,
+      "hit": 0.6118,
+      "map": 0.273,
+      "latency_ms_mean": 15.056,
+      "latency_ms_p95": 48.847
+    },
+    "hybrid_clusters": {
+      "precision": 0.1511,
+      "recall": 0.493,
+      "ndcg": 0.3726,
+      "hit": 0.6329,
+      "map": 0.2988,
+      "latency_ms_mean": 19.467,
+      "latency_ms_p95": 55.931
+    }
+  },
+  "clustering": {
+    "algorithm": "K-Means",
+    "k": 3,
+    "silhouette": 0.3873,
+    "silhouette_by_k": {
+      "2": 0.2847,
+      "3": 0.3873,
+      "4": 0.3392,
+      "5": 0.2985,
+      "6": 0.3008
+    },
+    "stability_ari": 1.0,
+    "cluster_sizes": {
+      "0": 54,
+      "1": 48,
+      "2": 26
+    }
+  },
+  "evaluation_note": "Includes static popularity baselines (global and time-slot) and cold-start simulation excluding every test user from clustering and collaborative training."
+}

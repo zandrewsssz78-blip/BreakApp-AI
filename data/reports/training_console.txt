@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-11-08T00:18:42.228948+00:00",
+  "training_cutoff_exclusive": "2026-11-06 20:47:23",
+  "users": 130,
+  "order_lines": 1960,
+  "products": 87,
+  "clusters": 3,
+  "silhouette": 0.3886,
+  "silhouette_by_k": {
+    "2": 0.2887,
+    "3": 0.3886,
+    "4": 0.3362,
+    "5": 0.2953,
+    "6": 0.2915
+  },
+  "stability_ari": 1.0,
+  "recommender": "rules + user-user CF + item-item CF + content + contextual popularity",
+  "online_learning": false
+}

@@ -1,0 +1,18 @@
+Recarga energía para tu tarde: prueba Aromática de Hierbas con Almojábana.
+PROD_010	Aromática de Hierbas	$2,800	score=0.7373
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Ya forma parte de tus compras anteriores.
+PROD_034	Parfait de Yogurt	$9,500	score=0.5869
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Ya forma parte de tus compras anteriores.
+PROD_027	Smoothie de Mango y Passion	$8,000	score=0.5671
+  - Estudiantes con un historial parecido también compran este producto.
+  - Coincide con categorías o etiquetas que sueles elegir.
+PROD_009	Aromática de Panela	$2,800	score=0.5585
+  - Coincide con categorías o etiquetas que sueles elegir.
+  - Ya forma parte de tus compras anteriores.
+PROD_030	Aromática de Frutas	$4,200	score=0.5408
+  - Coincide con categorías o etiquetas que sueles elegir.
+cluster=2 | Mediodía · Bebidas

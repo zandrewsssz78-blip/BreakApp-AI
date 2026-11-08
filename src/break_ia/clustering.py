@@ -56,9 +56,21 @@ def user_features(lines: Sequence[OrderItem], groups: Sequence[Order]) -> List[f
     n_lines = sum(cat_counts.values()) or 1
     avg_price = sum(i.unit_price for i in lines) / (len(lines) or 1)
     basket = sum(g.n_products for g in groups) / (len(groups) or 1)
+    dates = []
+    for group in groups:
+        try:
+            dates.append(datetime.strptime(group.timestamp, "%Y-%m-%d %H:%M:%S"))
+        except ValueError:
+            pass
+    span_weeks = max(1.0, ((max(dates) - min(dates)).days / 7.0) if len(dates) > 1 else 1.0)
+    frequency = len(groups) / span_weeks
+    diversity = len(cat_counts) / max(1, len(CATEGORIES))
     return (
         [slot_counts[s] / n_orders for s in SLOTS]
         + [cat_counts[c] / n_lines for c in CATEGORIES]
+        # Frecuencia y diversidad se conservan como métricas descriptivas,
+        # pero se excluyen del espacio de distancias: en las pruebas controladas
+        # redujeron la silueta sin mejorar las métricas del recomendador.
         + [avg_price, basket]
     )
 
@@ -111,6 +123,7 @@ def silhouette(points: List[List[float]], labels: List[int]) -> float:
     if len(clusters) < 2:
         return 0.0
     total = 0.0
+    valid_points = 0
     for i, p in enumerate(points):
         own = [math.sqrt(_dist2(p, q)) for j, q in enumerate(points) if labels[j] == labels[i] and j != i]
         if not own:  # cluster de un solo usuario
@@ -123,7 +136,30 @@ def silhouette(points: List[List[float]], labels: List[int]) -> float:
             if c != labels[i]
         )
         total += (b - a) / max(a, b) if max(a, b) > 0 else 0.0
-    return total / len(points)
+        valid_points += 1
+    return total / max(1, valid_points)
+
+
+
+
+def adjusted_rand_index(labels_a: Sequence[int], labels_b: Sequence[int]) -> float:
+    """Adjusted Rand Index entre dos particiones, invariante a IDs de cluster."""
+    if len(labels_a) != len(labels_b) or len(labels_a) < 2:
+        return 1.0
+    from math import comb
+    table: Counter = Counter(zip(labels_a, labels_b))
+    rows: Counter = Counter(labels_a)
+    cols: Counter = Counter(labels_b)
+    choose2 = lambda n: n * (n - 1) / 2
+    n_pairs = choose2(len(labels_a))
+    if n_pairs == 0:
+        return 1.0
+    index = sum(choose2(v) for v in table.values())
+    sum_rows = sum(choose2(v) for v in rows.values())
+    sum_cols = sum(choose2(v) for v in cols.values())
+    expected = (sum_rows * sum_cols) / n_pairs
+    maximum = 0.5 * (sum_rows + sum_cols)
+    return (index - expected) / (maximum - expected) if maximum != expected else 1.0
 
 
 # ---------------------------------------------------------------- modelo de clusters
@@ -143,6 +179,7 @@ class UserClusterModel:
         self.k: int = 1
         self.silhouette: float = 0.0
         self.silhouette_by_k: Dict[int, float] = {}
+        self.stability_ari: float = 1.0
         self.user_cluster: Dict[str, int] = {}
         self.centroids: List[List[float]] = []
         self.mins: List[float] = []
@@ -187,6 +224,12 @@ class UserClusterModel:
         centroids, labels, _ = kmeans(pts, k, seed) if k > 1 else ([[sum(c) / len(c) for c in zip(*pts)]], [0] * len(pts), 0.0)
         m.centroids = centroids
         m.silhouette = round(silhouette(pts, labels), 4) if k > 1 else 0.0
+        if k > 1 and len(pts) >= k + 1:
+            stability = []
+            for alt_seed in (17, 29, 43):
+                _, alt_labels, _ = kmeans(pts, k, alt_seed)
+                stability.append(adjusted_rand_index(labels, alt_labels))
+            m.stability_ari = round(sum(stability) / len(stability), 4)
         m.user_cluster = dict(zip(users, labels))
         m._count(user_lines, user_groups)
         m._describe(users, raw, labels)

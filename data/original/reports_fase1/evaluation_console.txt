@@ -1,0 +1,36 @@
+{
+  "split": "temporal 80/20; train strictly before cutoff",
+  "cutoff": "2026-10-30 12:03:15",
+  "train_orders": 930,
+  "test_orders": 233,
+  "k": 5,
+  "models": {
+    "rules": {
+      "precision": 0.1236,
+      "recall": 0.3605,
+      "ndcg": 0.2543,
+      "hit": 0.5021,
+      "latency_ms_mean": 25.08,
+      "latency_ms_p95": 67.315
+    },
+    "rules_clusters": {
+      "precision": 0.1279,
+      "recall": 0.3863,
+      "ndcg": 0.2712,
+      "hit": 0.5236,
+      "latency_ms_mean": 25.182,
+      "latency_ms_p95": 67.322
+    }
+  },
+  "clustering": {
+    "k": 3,
+    "silhouette": 0.3648,
+    "silhouette_by_k": {
+      "2": 0.3189,
+      "3": 0.3648,
+      "4": 0.3352,
+      "5": 0.296,
+      "6": 0.3034
+    }
+  }
+}

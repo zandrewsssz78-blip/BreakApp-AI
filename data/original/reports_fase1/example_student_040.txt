@@ -1,0 +1,7 @@
+Recarga energía para tu tarde: prueba Jugo Natural en Agua con Ensalada de Frutas Premium.
+PROD_029	Jugo Natural en Agua	$5,500	utilidad=0.7953
+PROD_035	Ensalada de Frutas Premium	$12,500	utilidad=0.7830
+PROD_034	Parfait de Yogurt	$9,500	utilidad=0.7772
+PROD_037	Queso con Aguapanela	$6,800	utilidad=0.6774
+PROD_036	Ensalada de Frutas con Helado	$11,000	utilidad=0.6487
+cluster=2 | Mediodía · Almuerzos

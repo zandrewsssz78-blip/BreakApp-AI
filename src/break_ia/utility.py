@@ -6,15 +6,16 @@ from typing import Dict, List, Optional
 from break_ia.models import FoodCategory, OrderItem, Product, UserProfile
 
 DEFAULT_WEIGHTS = {
-    "content": 0.32,
-    "temporal": 0.28,
-    "budget": 0.18,
-    "rating": 0.12,
-    "cluster": 0.10,  # afinidad de usuarios parecidos (clustering no supervisado)
+    "content": 0.36,
+    "temporal": 0.26,
+    "budget": 0.16,
+    "rating": 0.10,
+    "cluster": 0.12,  # afinidad de usuarios parecidos (clustering no supervisado)
 }
 NEUTRAL_RATING = 0.8  # calificacion asumida para productos que el usuario nunca ha pedido
 SAME_DAY_WEIGHT = 2.0  # peso extra de los pedidos hechos el mismo dia de la semana
-MIN_SLOT_ORDERS = 5  # minimo de pedidos en la franja para usar solo esa franja
+SAME_SLOT_WEIGHT = 2.5  # refuerzo para pedidos realizados en la misma franja horaria
+MIN_SLOT_ORDERS = 2  # minimo de pedidos en la franja para priorizar esa franja
 
 
 def parse_time_slot(hour: int, minute: int) -> str:
@@ -30,12 +31,18 @@ def parse_time_slot(hour: int, minute: int) -> str:
 
 
 def _order_slot(order: OrderItem) -> Optional[str]:
-    """Franja horaria en la que se hizo un pedido historico."""
+    """Franja horaria en la que se hizo un pedido historico (extraccion directa YYYY-MM-DD HH:MM:SS)."""
+    ts = order.timestamp
+    if len(ts) >= 16 and ts[13] == ":":
+        try:
+            return parse_time_slot(int(ts[11:13]), int(ts[14:16]))
+        except ValueError:
+            pass
     try:
-        dt = datetime.strptime(order.timestamp, "%Y-%m-%d %H:%M:%S")
+        dt = datetime.strptime(ts, "%Y-%m-%d %H:%M:%S")
+        return parse_time_slot(dt.hour, dt.minute)
     except ValueError:
         return None
-    return parse_time_slot(dt.hour, dt.minute)
 
 
 def calculate_temporal_affinity(product: Product, time_slot: str, day_of_week: str) -> float:
@@ -99,15 +106,19 @@ def _history_context(
 ) -> List[tuple]:
     """Pedidos pasados con su peso segun el contexto actual.
 
-    - Se usan solo los pedidos de la misma franja horaria (si hay suficientes).
-    - Los pedidos del mismo dia de la semana pesan SAME_DAY_WEIGHT veces mas (ej. viernes de gusto).
+    - Si el usuario tiene al menos MIN_SLOT_ORDERS en la franja, prioriza esa franja.
+    - Los pedidos de la misma franja y del mismo dia de la semana reciben mayor peso.
     """
     in_slot = [o for o in user_orders if _order_slot(o) == slot]
     relevant = in_slot if len(in_slot) >= MIN_SLOT_ORDERS else user_orders
-    return [
-        (o, SAME_DAY_WEIGHT if o.day_of_week.lower() == day_of_week.lower() else 1.0)
-        for o in relevant
-    ]
+    day_low = day_of_week.lower()
+    weighted = []
+    for o in relevant:
+        w = SAME_DAY_WEIGHT if o.day_of_week.lower() == day_low else 1.0
+        if _order_slot(o) == slot:
+            w *= SAME_SLOT_WEIGHT
+        weighted.append((o, w))
+    return weighted
 
 
 def compute_utility_score(
@@ -151,7 +162,7 @@ def compute_utility_score(
         tag_score = sum(tag_w.get(t, 0.0) / max_tag for t in product.tags) / len(product.tags)
     else:
         tag_score = 0.5
-    s_content = 0.3 * cat_freq + 0.3 * tag_score + 0.4 * prod_affinity
+    s_content = 0.25 * cat_freq + 0.25 * tag_score + 0.50 * prod_affinity
 
     # 2. Temporal Context
     s_temporal = calculate_temporal_affinity(product, slot, day_of_week)
@@ -165,17 +176,20 @@ def compute_utility_score(
     if not product.available:
         s_rating = 0.0
 
-    # 5. Afinidad de cluster: lo que piden usuarios con habitos parecidos
-    base = (
+    # 5. Afinidad de cluster adaptativa: mayor respaldo cuando el historial propio es corto
+    w_cluster = weights.get("cluster", 0.0)
+    base_scale = max(1e-9, 1.0 - w_cluster)
+    base_norm = (
         weights["content"] * s_content
         + weights["temporal"] * s_temporal
         + weights["budget"] * s_budget
         + weights["rating"] * s_rating
-    )
-    w_cluster = weights.get("cluster", 0.0)
+    ) / base_scale
     if cluster_affinity is None:
-        utility = base / max(1e-9, 1.0 - w_cluster)
+        utility = base_norm
     else:
-        utility = base + w_cluster * cluster_affinity
+        slot_count = sum(1 for o in user_orders if _order_slot(o) == slot)
+        eff_w = 0.015 if slot_count >= 3 else (0.04 if slot_count == 2 else (0.14 if slot_count == 1 else 0.24))
+        utility = (1.0 - eff_w) * base_norm + eff_w * cluster_affinity
 
     return max(0.0, utility)

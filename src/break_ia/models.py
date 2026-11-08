@@ -79,6 +79,7 @@ class RecommendationItem:
     utility_score: float
     matched_tags: List[str] = field(default_factory=list)
     pairing_product: Optional[Product] = None
+    explanations: List[str] = field(default_factory=list)
 
 
 @dataclass

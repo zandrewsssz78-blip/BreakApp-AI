@@ -27,3 +27,7 @@ __marimo__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Tests and generated backups
+.pytest_cache/
+data/backups/
