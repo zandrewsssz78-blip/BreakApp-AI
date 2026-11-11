@@ -1,6 +1,6 @@
 # BREAK – Agente híbrido de recomendaciones (Fase 2)
 
-Proyecto Python local para analizar hábitos de compra y generar recomendaciones personalizadas para cafeterías universitarias. Se conserva la arquitectura y la CLI de la Fase 1. **No incluye FastAPI, Firebase conectado ni integración Android.**
+Proyecto Python local para analizar hábitos de compra y generar recomendaciones personalizadas para cafeterías universitarias. Se conserva la arquitectura y la CLI de la Fase 1, e **incorpora un servidor REST API HTTP (`server.py`) con biblioteca estándar para su integración directa con la aplicación móvil Android ([break-app-copy](https://github.com/pepitaemy3535/break-app-copy))**.
 
 ## Estado de los datos
 
@@ -126,13 +126,39 @@ La ejecución reproducible con corte `--as-of "2026-11-06 20:47:23"` (1.183 pedi
 
 Se observa una progresión consistente en todas las métricas de ranking desde los *baselines* estáticos (`Hit Rate@5 = 26,58 %` global y `32,07 %` por franja), pasando por el modelo basado solo en reglas (`60,76 %`), reglas con respaldo de clustering K-Means (`61,18 %`) hasta el recomendador **Híbrido + Clusters (`63,29 %` en Hit Rate@5 y `49,30 %` en Recall@5)**, manteniendo una latencia media de inferencia de **19,5 ms** (< 50 ms).
 
+## Servidor REST API e Integración Móvil (Break-app)
+
+El repositorio incluye un microservicio HTTP nativo (`server.py`) sin dependencias externas adicionales que expone el modelo entrenado (`data/models/break_agent.pkl`) para ser consumido desde la aplicación móvil Android en Kotlin/Jetpack Compose (`https://github.com/pepitaemy3535/break-app-copy`).
+
+### Arranque rápido del servidor
+
+- **Doble clic en Windows:** ejecuta `run_server.bat` o `run_server.ps1`.
+- **Por consola:**
+  ```powershell
+  python server.py 8000
+  ```
+
+El servidor escucha en `http://0.0.0.0:8000` (y desde el emulador de Android Studio en `http://10.0.2.2:8000`).
+
+### Endpoints disponibles
+
+1. **`GET /api/health`**: verifica el estado en línea del servicio y la versión del modelo híbrido.
+2. **`POST /api/chat`**: procesa consultas en lenguaje natural desde el chat de la app (`prompt`, `userId`), detecta intención horaria y presupuesto, y responde con texto formateado, productos estructurados y combo sugerido.
+   ```json
+   {
+     "prompt": "¿Qué me recomiendas para el almuerzo con menos de 15000?",
+     "userId": "usr_estudiante_01"
+   }
+   ```
+3. **`POST /api/recommend`**: devuelve directamente el top-k de recomendaciones estructuradas para un `user_id` y marca temporal `when`.
+
 ## Alcance y limitaciones
 
 - Se conserva el proyecto y sus scripts; no se inicia un repositorio desde cero.
 - Los eventos sintéticos se identifican explícitamente (`usr_sintetico_*`, `SYN_*`) y no se presentan como compras reales.
 - No hay campos normalizados de ingredientes/alérgenos; no se pueden garantizar restricciones dietarias.
 - La actualización de modelos es por lotes; no es aprendizaje incremental online.
-- No se implementa API, Firebase ni integración móvil en esta fase.
+- La exposición del modelo hacia el cliente móvil se realiza mediante el servidor REST API (`server.py`); la persistencia en Firebase y la experiencia offline/online (*Dual-Engine*) residen en la app móvil (`break-app-copy`).
 
 ## Informe técnico
 
